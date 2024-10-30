@@ -1,0 +1,5 @@
+CompilerFlags:
+  Add:
+    - "-xc"
+    - "-I/Users/raphael/Documents/42_cursus/circle4/Cub3D//sources"
+    - "-I/Users/raphael/Documents/42_cursus/circle4/Cub3D/includes"
