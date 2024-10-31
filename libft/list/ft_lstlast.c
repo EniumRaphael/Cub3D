@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/12 11:42:54 by rparodi           #+#    #+#             */
+/*   Updated: 2023/11/12 17:25:48 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
+	if (lst == NULL)
+		return (lst);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

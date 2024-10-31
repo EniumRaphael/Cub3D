@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/07 16:48:30 by rparodi           #+#    #+#             */
+/*   Updated: 2023/11/07 18:45:57 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	str = (char *)s;
+	while (i < n)
+	{
+		if ((char)c == str[i])
+			return ((void *)str + i);
+		i++;
+	}
+	return (NULL);
 }

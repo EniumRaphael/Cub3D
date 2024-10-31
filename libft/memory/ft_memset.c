@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/07 16:50:29 by rparodi           #+#    #+#             */
+/*   Updated: 2023/11/07 18:58:02 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+void	*ft_memset(void *s, int c, size_t n)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	str = (char *)s;
+	while (i < n)
+	{
+		str[i] = c;
+		i++;
+	}
+	return (str);
 }

@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/06 11:58:37 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 12:54:40 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+/**
+ * @brief Check if the character is alpha
+ *
+ * @param c the character
+ * @return the character if alpha or 0 if not
+ */
+int	ft_isalpha(int c)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (c);
 	return (0);
 }

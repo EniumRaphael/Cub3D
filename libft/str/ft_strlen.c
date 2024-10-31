@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/07 16:56:24 by rparodi           #+#    #+#             */
+/*   Updated: 2023/11/08 12:37:09 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+size_t	ft_strlen(const char *s)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

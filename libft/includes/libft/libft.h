@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/06 11:14:57 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 15:27:14 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-int	main(int argc, char *argv[])
-{
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
-}
+# include "char.h"
+# include "convert.h"
+# include "list.h"
+# include "memory.h"
+# include "print.h"
+# include "str.h"
+
+#endif

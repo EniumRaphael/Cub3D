@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/07 16:56:56 by rparodi           #+#    #+#             */
+/*   Updated: 2023/11/09 13:16:39 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
+	size_t	i;
+	int		diff;
+
+	i = 0;
+	while ((s1[i] || s2[i]) && i < n)
+	{
+		if (s1[i] != s2[i])
+		{
+			diff = (unsigned char)s1[i] - (unsigned char)s2[i];
+			return (diff);
+		}
+		i++;
+	}
 	return (0);
 }

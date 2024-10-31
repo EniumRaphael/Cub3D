@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/06 14:04:26 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 12:49:55 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+/**
+ * @brief Check if the character is in the ascii table
+ *
+ * @param c the character
+ * @return the character if in the ascii table or 0 if not
+ */
+int	ft_isascii(int c)
 {
-	if (!ft_parse_args(argc, argv))
+	if (c == 0)
 		return (1);
+	if (c > 0 && c <= 127)
+		return (c);
 	return (0);
 }

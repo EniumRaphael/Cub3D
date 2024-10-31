@@ -3,19 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
+#    By: rparodi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/10/31 17:19:01 by rparodi          ###   ########.fr        #
+#    Updated: 2024/10/31 17:19:36 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 # Variables
 
 # Name
-NAME = Cub3D
-NAME_BONUS = Cub3D_bonus
+NAME=../build/libft.a
 
 # Commands
 CC = cc
@@ -23,20 +21,68 @@ RM = rm -rf
 
 # Flags
 CFLAGS = -Werror -Wextra -Wall
-CFLAGS += -g3 -MMD 
-#-lm
+CFLAGS += -g3 -MMD
+# CFLAGS += -lm
 
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
-INCLUDES =	-I ./includes/ -I ./includes/libft/
+LDFLAGS = -L.
+LDLIBS = -lft
 
-SRC =	sources/main.c \
-		sources/error.c \
-		parsing/arguments.c
+INCLUDES =	./includes/libft/
+
+SRC =	char/ft_isdigit.c \
+		char/ft_isalnum.c \
+		char/ft_isalpha.c \
+		char/ft_isascii.c \
+		char/ft_isprint.c \
+		char/ft_tolower.c \
+		char/ft_toupper.c \
+		convert/ft_atoi.c \
+		convert/ft_atoll.c \
+		convert/ft_itoa.c \
+		list/ft_lstadd_back.c \
+		list/ft_lstadd_front.c \
+		list/ft_lstclear.c \
+		list/ft_lstdelone.c \
+		list/ft_lstiter.c \
+		list/ft_lstlast.c \
+		list/ft_lstmap.c \
+		list/ft_lstnew.c \
+		list/ft_lstsize.c \
+		memory/ft_bzero.c \
+		memory/ft_calloc.c \
+		memory/ft_memchr.c \
+		memory/ft_memcmp.c \
+		memory/ft_memcpy.c \
+		memory/ft_memmove.c \
+		memory/ft_memset.c \
+		print/ft_printf.c \
+		print/ft_put.c \
+		print/ft_putchar_fd.c \
+		print/ft_putendl_fd.c \
+		print/ft_putnbr_fd.c \
+		print/ft_putstr_fd.c \
+		str/ft_split.c \
+		str/ft_strchr.c \
+		str/ft_strcmp.c \
+		str/ft_strcpy.c \
+		str/ft_strdup.c \
+		str/ft_striteri.c \
+		str/ft_strjoin.c \
+		str/ft_strlcat.c \
+		str/ft_strlcpy.c \
+		str/ft_strlen.c \
+		str/ft_strmapi.c \
+		str/ft_strncmp.c \
+		str/ft_strnstr.c \
+		str/ft_strrchr.c \
+		str/ft_strtrim.c \
+		str/ft_substr.c
 
 # Objects
-OBJDIRNAME = ./build
+OBJDIRNAME = ../build
 OBJ = $(addprefix $(OBJDIRNAME)/,$(SRC:.c=.o))
 
 # Colors
@@ -51,11 +97,14 @@ END = \033[0m
 # All (make all)
 all: header $(NAME) footer
 
+lib: $(NAME)
+
 # Bonus (make bonus)
 bonus: header $(OBJ) $(LIB_OBJ) footer
 	@mkdir -p $(OBJDIRNAME)
-	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
-	@cc $(CFLAGS) -D BONUS=1 -o $(NAME_BONUS) $(OBJ) $(LIB_OBJ)
+	@mkdir -p $(OBJDIRNAME)/$(SRCDIRNAME)
+	@printf '$(GREY) Be Carefull ur in $(END)$(GREEN)Debug Mode$(END)\n'
+	@cc $(CFLAGS) -D BONUS=1 -o $(NAME) $(OBJ) $(LIB_OBJ)
 
 # Clean (make clean)
 clean:
@@ -67,7 +116,6 @@ clean:
 fclean: clean
 	@printf '$(GREY) Removing $(END)$(RED)Program$(END)\n'
 	@$(RM) $(NAME)
-	@$(RM) $(NAME_BONUS)
 	@echo ""
 
 # Restart (make re)
@@ -75,16 +123,15 @@ re: header fclean all
 
 # Dependences for all
 $(NAME): $(OBJ)
-	@make --no-print-directory -C ./libft lib
 	@mkdir -p $(OBJDIRNAME)
-	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
-	@cc $(CFLAGS) ./build/libft.a -o $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 # Creating the objects
 $(OBJDIRNAME)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@printf '$(GREY) Compiling $(END)$(GREEN)$<$(END)\n'
-	@cc $(CFLAGS)-o $@ -c $< $(INCLUDES)
+	@cc $(CFLAGS) -o $@ -c $< -I$(INCLUDES)
 
 #	Header
 header:

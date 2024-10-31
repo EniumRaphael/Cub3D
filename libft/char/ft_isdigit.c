@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/06 12:44:28 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 12:49:05 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+/**
+ * @brief Check if the character is alpha numeric
+ *
+ * @param c the character
+ * @return the character if numeric or 0 if not
+ */
+int	ft_isdigit(int c)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
+	if (c >= '0' && c <= '9')
+		return (c);
 	return (0);
 }

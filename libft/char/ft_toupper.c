@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/07 10:44:26 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 12:55:14 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+/**
+ * @brief convert the lower case to upper case
+ *
+ * @param c the character
+ * @return the character to upper case if is on lower
+ */
+int	ft_toupper(int c)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }

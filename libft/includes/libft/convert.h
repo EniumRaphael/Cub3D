@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   convert.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2024/10/31 14:57:24 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 15:27:40 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CONVERT_H
+# define CONVERT_H
 
-int	main(int argc, char *argv[])
-{
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
-}
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <fcntl.h>
+
+char			*ft_itoa(int n);
+int				ft_atoi(const char *nptr);
+long long int	ft_atoll(const char *nptr);
+
+#endif

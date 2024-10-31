@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/07 16:55:25 by rparodi           #+#    #+#             */
+/*   Updated: 2023/11/13 19:16:30 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (src[i] && i + 1 < size)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (size > 0)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (ft_strlen(src));
 }

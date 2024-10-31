@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 12:15:18 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/10/31 16:54:38 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 
+# include "libft.h"
 # include "message_error.h"
 
 # ifndef BONUS

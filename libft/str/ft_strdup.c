@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:43:19 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/07 16:53:59 by rparodi           #+#    #+#             */
+/*   Updated: 2023/11/13 20:02:09 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+char	*ft_strdup(const char *s)
 {
-	if (!ft_parse_args(argc, argv))
-		return (1);
-	return (0);
+	size_t	len;
+	char	*to_return;
+
+	len = ft_strlen(s) + 1;
+	to_return = (char *)malloc(sizeof(char) * len);
+	if (!to_return)
+		return (NULL);
+	ft_strlcpy(to_return, s, len);
+	return (to_return);
 }
