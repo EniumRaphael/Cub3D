@@ -6,7 +6,7 @@
 #    By: rparodi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/10/31 18:17:13 by rparodi          ###   ########.fr        #
+#    Updated: 2024/10/31 23:46:44 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LDLIBS = -lft
 INCLUDES =	./includes/libft/
 
 # Objects
-OBJDIRNAME = ../build
+OBJDIRNAME = ../build/rparodi
 OBJ = $(addprefix $(OBJDIRNAME)/,$(SRC:.c=.o))
 
 SRC =	char/ft_isdigit.c \

@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/10/31 17:19:01 by rparodi          ###   ########.fr        #
+#    Updated: 2024/10/31 23:54:04 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,18 @@ RM = rm -rf
 # Flags
 CFLAGS = -Werror -Wextra -Wall
 CFLAGS += -g3 -MMD 
-#-lm
 
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
 INCLUDES =	-I ./includes/ -I ./includes/libft/
+
+# Library flags
+
+LDFLAGS	=\
+		-L./build -lft	-lft_personal
+
+#		-lm				\
 
 SRC =	sources/main.c \
 		sources/error.c \
@@ -52,10 +58,10 @@ END = \033[0m
 all: header $(NAME) footer
 
 # Bonus (make bonus)
-bonus: header $(OBJ) $(LIB_OBJ) footer
+bonus: header $(OBJ) footer
 	@mkdir -p $(OBJDIRNAME)
 	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
-	@cc $(CFLAGS) -D BONUS=1 -o $(NAME_BONUS) $(OBJ) $(LIB_OBJ)
+	@cc $(CFLAGS) -D BONUS=1 -o $(NAME_BONUS) $(OBJ) $(LDFLAGS)
 
 # Clean (make clean)
 clean:
@@ -73,12 +79,17 @@ fclean: clean
 # Restart (make re)
 re: header fclean all
 
+build/libft.a:
+	@make --no-print-directory -C ./libft
+build/libft_personal.a:
+	@make --no-print-directory -C ./libft_personal
+
 # Dependences for all
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) build/libft.a build/libft_personal.a
 	@make --no-print-directory -C ./libft lib
 	@mkdir -p $(OBJDIRNAME)
 	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
-	@cc $(CFLAGS) ./build/libft.a -o $(NAME) $(OBJ)
+	@cc $(CFLAGS) ./build/libft.a -o $(NAME) $(OBJ) $(LDFLAGS)
 
 # Creating the objects
 $(OBJDIRNAME)/%.o: %.c
