@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/10/30 16:48:22 by rparodi          ###   ########.fr        #
+#    Updated: 2024/10/31 11:16:34 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ CFLAGS += -g3 -MMD
 INCLUDES =	./includes/
 
 SRC =	sources/main.c \
+		sources/error.c \
 		parsing/arguments.c
 
 # Objects

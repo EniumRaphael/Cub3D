@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 11:17:40 by rparodi          ###   ########.fr       */
+/*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 11:21:59 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
-# include <stdio.h>
-# include <math.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <sys/time.h>
-# include <unistd.h>
-# include <stdbool.h>
+#include <string.h>
 
-# include "message_error.h"
-
-# ifndef BONUS
-#  define BONUS 0
-# endif
-
-void	print_error(char *msg);
-bool	ft_parse_args(int argc, char *argv[]);
-int		main(int argc, char *argv[]);
-
-#endif
+void	print_error(char *msg)
+{
+	write(2, BOLD_RED, strlen(BOLD_RED));
+	write(2, "Error:\n", strlen("Error:\n"));
+	write(2, RESET, strlen(RESET));
+	write(2, RED, strlen(RED));
+	write(2, msg, strlen(msg));
+	write(2, RESET, strlen(RESET));
+}
