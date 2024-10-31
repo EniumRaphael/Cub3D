@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 11:17:40 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/10/31 12:15:18 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,34 @@
 # ifndef BONUS
 #  define BONUS 0
 # endif
+
+typedef struct s_map
+{
+	int		fd;
+	char	*path;
+	char	*oneline;
+	char	**content;
+	double	spawn_x;
+	double	spawn_y;
+}			t_map;
+
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	view_x;
+	double	view_y;
+}			t_player;
+
+typedef struct s_info
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_map		*map;
+	t_player	player;
+}				t_info;
 
 void	print_error(char *msg);
 bool	ft_parse_args(int argc, char *argv[]);

@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/30 17:00:20 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/10/31 12:04:36 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	main(int argc, char *argv[])
 {
+	t_info	*cub;
+
 	if (!ft_parse_args(argc, argv))
 		return (1);
+	
 	return (0);
 }
