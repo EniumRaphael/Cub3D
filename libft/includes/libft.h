@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rparodi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 11:42:11 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 17:46:00 by rparodi          ###   ########.fr       */
+/*   Created: 2023/11/06 11:14:57 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 15:27:14 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-/**
- * @brief Clear the element of the list with the function
- *
- * @param lst the element of the list to be clear
- * @param del the function to clear the list
- */
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	del(lst->content);
-	free(lst);
-}
+# include "char.h"
+# include "convert.h"
+# include "list.h"
+# include "memory.h"
+# include "print.h"
+# include "str.h"
+
+#endif

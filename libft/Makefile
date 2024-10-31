@@ -6,14 +6,14 @@
 #    By: rparodi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/10/31 17:19:36 by rparodi          ###   ########.fr        #
+#    Updated: 2024/10/31 18:17:13 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
 
 # Name
-NAME=../build/libft.a
+NAME = ../build/libft.a
 
 # Commands
 CC = cc
@@ -31,6 +31,10 @@ LDFLAGS = -L.
 LDLIBS = -lft
 
 INCLUDES =	./includes/libft/
+
+# Objects
+OBJDIRNAME = ../build
+OBJ = $(addprefix $(OBJDIRNAME)/,$(SRC:.c=.o))
 
 SRC =	char/ft_isdigit.c \
 		char/ft_isalnum.c \
@@ -80,10 +84,6 @@ SRC =	char/ft_isdigit.c \
 		str/ft_strrchr.c \
 		str/ft_strtrim.c \
 		str/ft_substr.c
-
-# Objects
-OBJDIRNAME = ../build
-OBJ = $(addprefix $(OBJDIRNAME)/,$(SRC:.c=.o))
 
 # Colors
 GREEN = \033[32m

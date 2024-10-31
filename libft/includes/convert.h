@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   convert.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 16:14:10 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 18:14:03 by rparodi          ###   ########.fr       */
+/*   Created: 2024/10/31 14:57:24 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 15:27:40 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef CONVERT_H
+# define CONVERT_H
 
-/**
- * @brief Copies a string.
- * 
- * @param dst The destination buffer.
- * @param src The source string.
- * 
- * @return A pointer to `dst`.
- */
-char	*ft_strcpy(char *dst, const char *src)
-{
-	size_t	i;
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <fcntl.h>
 
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
+char			*ft_itoa(int n);
+int				ft_atoi(const char *nptr);
+long long int	ft_atoll(const char *nptr);
+
+#endif

@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   char.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 16:14:10 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 18:14:03 by rparodi          ###   ########.fr       */
+/*   Created: 2024/10/31 14:54:04 by rparodi           #+#    #+#             */
+/*   Updated: 2024/10/31 15:22:26 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef CHAR_H
+# define CHAR_H
 
-/**
- * @brief Copies a string.
- * 
- * @param dst The destination buffer.
- * @param src The source string.
- * 
- * @return A pointer to `dst`.
- */
-char	*ft_strcpy(char *dst, const char *src)
-{
-	size_t	i;
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <fcntl.h>
 
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
+int	ft_isalnum(int c);
+int	ft_isalpha(int c);
+int	ft_isascii(int c);
+int	ft_isdigit(int c);
+int	ft_isprint(int c);
+int	ft_tolower(int c);
+int	ft_toupper(int c);
+
+#endif
