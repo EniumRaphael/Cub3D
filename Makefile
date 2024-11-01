@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/10/31 23:54:04 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/11/01 12:17:05 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,9 +84,11 @@ build/libft.a:
 build/libft_personal.a:
 	@make --no-print-directory -C ./libft_personal
 
+build/mlx.a:
+	@./minilibx-linux/configure
+
 # Dependences for all
-$(NAME): $(OBJ) build/libft.a build/libft_personal.a
-	@make --no-print-directory -C ./libft lib
+$(NAME): $(OBJ) build/libft.a build/libft_personal.a build/mlx.a
 	@mkdir -p $(OBJDIRNAME)
 	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
 	@cc $(CFLAGS) ./build/libft.a -o $(NAME) $(OBJ) $(LDFLAGS)
