@@ -6,10 +6,9 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/01 12:17:05 by rparodi          ###   ########.fr        #
+#    Updated: 2024/11/08 11:45:04 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 # Variables
 
@@ -24,18 +23,24 @@ RM = rm -rf
 # Flags
 CFLAGS = -Werror -Wextra -Wall
 CFLAGS += -g3 -MMD 
-
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
-INCLUDES =	-I ./includes/ -I ./includes/libft/
+INCLUDES = -I ./includes/ -I ./includes/libft/ -I ./minilibx-linux
+
+# Paths
+LIBFT_DIR = ./libft
+LIBFT_PERSONAL_DIR = ./libft_personal
+MLX_DIR = ./minilibx-linux
 
 # Library flags
+LDFLAGS = -L./build -lft -lft_personal -lm
 
-LDFLAGS	=\
-		-L./build -lft	-lft_personal
+# MiniLibX flags for macOS with XQuartz
+MLXFLAGS = -L$(MLX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext -lXrender -lXrandr -lXi
 
-#		-lm				\
+# Add MLXFLAGS to the linker flags
+LDFLAGS += $(MLXFLAGS)
 
 SRC =	sources/main.c \
 		sources/error.c \
@@ -53,7 +58,7 @@ GOLD = \033[38;5;220m
 END = \033[0m
 
 # Rules
-
+#
 # All (make all)
 all: header $(NAME) footer
 
@@ -61,7 +66,7 @@ all: header $(NAME) footer
 bonus: header $(OBJ) footer
 	@mkdir -p $(OBJDIRNAME)
 	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
-	@cc $(CFLAGS) -D BONUS=1 -o $(NAME_BONUS) $(OBJ) $(LDFLAGS)
+	@$(CC) $(CFLAGS) -D BONUS=1 -o $(NAME_BONUS) $(OBJ) $(LDFLAGS)
 
 # Clean (make clean)
 clean:
@@ -79,27 +84,27 @@ fclean: clean
 # Restart (make re)
 re: header fclean all
 
+# Compile external libraries
 build/libft.a:
-	@make --no-print-directory -C ./libft
+	@make --no-print-directory -C $(LIBFT_DIR)
 build/libft_personal.a:
-	@make --no-print-directory -C ./libft_personal
-
-build/mlx.a:
-	@./minilibx-linux/configure
+	@make --no-print-directory -C $(LIBFT_PERSONAL_DIR)
+build/libmlx.a:
+	@make --no-print-directory -C $(MLX_DIR)
 
 # Dependences for all
-$(NAME): $(OBJ) build/libft.a build/libft_personal.a build/mlx.a
+$(NAME): $(OBJ) build/libft.a build/libft_personal.a build/libmlx.a
 	@mkdir -p $(OBJDIRNAME)
 	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
-	@cc $(CFLAGS) ./build/libft.a -o $(NAME) $(OBJ) $(LDFLAGS)
+	@$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $(NAME)
 
 # Creating the objects
 $(OBJDIRNAME)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@printf '$(GREY) Compiling $(END)$(GREEN)$<$(END)\n'
-	@cc $(CFLAGS)-o $@ -c $< $(INCLUDES)
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
-#	Header
+# Header
 header:
 		@clear
 		@printf '\n\n'
@@ -115,7 +120,7 @@ header:
 		@printf '$(GOLD)              ******  $(END)\n'
 		@printf '$(GREY)                                      Made by rparodi$(END)\n\n'
 
-#	Footer
+# Footer
 footer:
 		@printf "\n"
 		@printf "$(GOLD)                   ,_     _,$(END)\n"
@@ -130,7 +135,7 @@ footer:
 		@printf "$(GOLD)                   '\"'   '\"'$(END)\n"
 		@printf '              $(GREY)The compilation is$(END) $(GOLD)finish$(END)\n               $(GREY)Have a good $(END)$(GOLD)correction !$(END)\n'
 
-#	Phony
+# Phony targets
 .PHONY: all bonus clean fclean re
 
--include	${OBJ:.o=.d}
+-include ${OBJ:.o=.d}

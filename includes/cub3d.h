@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:54:38 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/08 11:40:44 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdbool.h>
 
 # include "libft.h"
+# include "../minilibx-linux/mlx.h"
 # include "message_error.h"
 
 # ifndef BONUS
