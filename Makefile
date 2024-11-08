@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/08 11:45:04 by rparodi          ###   ########.fr        #
+#    Updated: 2024/11/08 19:36:49 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,14 @@ CFLAGS += -g3 -MMD
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
-INCLUDES = -I ./includes/ -I ./includes/libft/ -I ./minilibx-linux
+INCLUDES = -I ./includes/ -I ./includes/include/ -I ./minilibx-linux
 
 # Paths
 LIBFT_DIR = ./libft
-LIBFT_PERSONAL_DIR = ./libft_personal
 MLX_DIR = ./minilibx-linux
 
 # Library flags
-LDFLAGS = -L./build -lft -lft_personal -lm
+LDFLAGS = -L./build -lft -lm
 
 # MiniLibX flags for macOS with XQuartz
 MLXFLAGS = -L$(MLX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext -lXrender -lXrandr -lXi
@@ -87,13 +86,11 @@ re: header fclean all
 # Compile external libraries
 build/libft.a:
 	@make --no-print-directory -C $(LIBFT_DIR)
-build/libft_personal.a:
-	@make --no-print-directory -C $(LIBFT_PERSONAL_DIR)
 build/libmlx.a:
 	@make --no-print-directory -C $(MLX_DIR)
 
 # Dependences for all
-$(NAME): $(OBJ) build/libft.a build/libft_personal.a build/libmlx.a
+$(NAME): $(OBJ) build/libft.a build/libmlx.a
 	@mkdir -p $(OBJDIRNAME)
 	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
 	@$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $(NAME)
