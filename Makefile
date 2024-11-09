@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/08 19:36:49 by rparodi          ###   ########.fr        #
+#    Updated: 2024/11/09 01:52:06 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CFLAGS += -g3 -MMD
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
-INCLUDES = -I ./includes/ -I ./includes/include/ -I ./minilibx-linux
+INCLUDES = -I ./includes -I ./includes/include -I ./minilibx-linux
 
 # Paths
 LIBFT_DIR = ./libft
@@ -41,9 +41,14 @@ MLXFLAGS = -L$(MLX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext -lXrender -lXrandr -lX
 # Add MLXFLAGS to the linker flags
 LDFLAGS += $(MLXFLAGS)
 
-SRC =	sources/main.c \
-		sources/error.c \
-		parsing/arguments.c
+SRC =\
+		parsing/arguments.c		\
+		sources/cleanups.c		\
+		sources/error.c			\
+		sources/main.c			\
+		sources/options.c		\
+		sources/options_impl.c	\
+		sources/rgb_to_color.c
 
 # Objects
 OBJDIRNAME = ./build

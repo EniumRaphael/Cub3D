@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/10/31 23:53:29 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/11/09 00:08:07 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ BOLD		= "\\e[1m"
 
 # Commands
 CC			=	clang
-NAME		=	ft_personal
+NAME		=	ft
 OUTDIR		=	../build
 
 TEST_NAME	=	tests_run
