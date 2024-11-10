@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/09 01:43:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:13:25 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void	print_error(const char *msg)
 	ft_putstr_fd(RED, STDERR_FILENO);
 	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putstr_fd(RESET, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }

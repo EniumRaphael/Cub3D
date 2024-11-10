@@ -1,5 +1,7 @@
 CompilerFlags:
   Add:
     - "-xc"
+    - "-I/home/rparodi/Documents/cub3d/includes"
+    - "-I/home/rparodi/Documents/cub3d/includes/include"
     - "-I/Users/raphael/Documents/42_cursus/circle4/Cub3D/includes/libft"
     - "-I/Users/raphael/Documents/42_cursus/circle4/Cub3D/includes"
