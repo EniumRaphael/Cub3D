@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/09 01:45:20 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:48:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,19 @@
 
 void	dump_info(t_info *info)
 {
+	const char *bool_str[2] = { "True", "False"};
+
 	printf("t_info:\n");
 	printf("\tcli_ctx:\n");
 	printf("\t\tfile: %s\n", info->cli_ctx.file);
-	printf("\t\tdebug: %s\n", info->cli_ctx.debug ? "true" : "false");
-	printf("\t\tsave: %s\n", info->cli_ctx.save ? "true" : "false");
-	printf("\t\thelp: %s\n", info->cli_ctx.help ? "true" : "false");
+	printf("\t\tdebug: %s\n", bool_str[info->cli_ctx.debug]);
+	printf("\t\tsave: %s\n", bool_str[info->cli_ctx.save]);
+	printf("\t\thelp: %s\n", bool_str[info->cli_ctx.help]);
+	printf("\tmap:\n");
+	printf("\t\tpath:%s\n", info->map.path);
+	printf("\t\tfd:%d\n", info->map.fd);
+	printf("\t\tsize:\t(x:%d, y:%d)\n", info->map.size.x, info->map.size.y);
+	printf("\t\tplayer_pos:\t(x:%lf, y:%lf)\n", info->map.player_pos.x, info->map.player_pos.y);
 }
 
 void	check_err(t_info *info)
@@ -44,6 +51,11 @@ void	check_err(t_info *info)
 void	run_cub3d(t_info *info)
 {
 	// code here
+	//  - parse map
+	//	- validity check
+	//  - mlx inits
+	//		- game loop
+	//	- mlx cleanup
 	(void)info;
 }
 
@@ -62,13 +74,11 @@ int main_cub3d(char *file_arg, t_info *info)
 	return (cleanup_info(info), EXIT_SUCCESS);
 }
 
-
 int	main(int argc, char *argv[])
 {
 	t_info	info;
 	int parsed_args;
 
-	(void)argc;
 	parsed_args = c3_options(&info, argc, argv);
 	if (parsed_args == -1)
 		return (EXIT_FAILURE);

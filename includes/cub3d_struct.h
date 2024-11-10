@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/09 01:50:35 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:37:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_STRUCT_H
 
 # include <stdbool.h>
+# include "mlx_structs.h"
 
 # define FILE_EXTENSION ".cub"
 # define FILE_EXTENSION_LEN 4
@@ -110,8 +111,8 @@ typedef struct s_info
 {
 	t_error		last_error;
 
-	void		*mlx_ptr;
-	void		*win_ptr;
+	t_xvar		*mlx_ptr;
+	t_win_list	*win_ptr;
 	t_map		map;
 	t_player	player;
 	t_cli		cli_ctx;
