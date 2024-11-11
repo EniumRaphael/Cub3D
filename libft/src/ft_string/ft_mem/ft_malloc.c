@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 18:20:32 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/19 18:20:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:15:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,3 @@ void	*ft_malloc(size_t size)
 {
 	return (malloc(size));
 }
-

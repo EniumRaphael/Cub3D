@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:37:47 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/05/19 16:39:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:18:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,20 @@ int	t_ll_pop(void)
 }
 
 /*
-	create_2elem_list(&list, (void **)&data, (void **)&data2); // (42)-> (21)-> NULL
-	data3 = malloc(sizeof(int));
-	*data3 = 63;
-	ft_ll_push(&list, data3); // (63)-> (42)-> (21)-> NULL
-	pop = ft_ll_pop_back(&list); // 21 : (63)-> (42)-> NULL
-	if (ft_ll_size(list) != 2)
-		return (1);
-	else if (list->data != data3)
-		return (1);
-	else if (list->next->data != data)
-		return (1);
-	else if (pop != data2)
-		return (1);
-	pop = ft_ll_pop_back(&list); // 42 : (63)-> NULL
+create_2elem_list(&list, (void **)&data, (void **)&data2); // (42)-> (21)-> NULL
+data3 = malloc(sizeof(int));
+*data3 = 63;
+ft_ll_push(&list, data3); // (63)-> (42)-> (21)-> NULL
+pop = ft_ll_pop_back(&list); // 21 : (63)-> (42)-> NULL
+if (ft_ll_size(list) != 2)
+	return (1);
+else if (list->data != data3)
+	return (1);
+else if (list->next->data != data)
+	return (1);
+else if (pop != data2)
+	return (1);
+pop = ft_ll_pop_back(&list); // 42 : (63)-> NULL
 
 */
 int	t_ll_pop_back(void)

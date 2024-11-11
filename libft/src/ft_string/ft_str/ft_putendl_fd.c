@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:14:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/07/19 18:48:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:16:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	ft_putendl_fd(const char *s, int fd)
 {
-	int ret;
+	int	ret;
 
 	if (!s)
 		return (-1);
