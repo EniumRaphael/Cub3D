@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/11 20:01:31 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/11 21:34:07 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	run_cub3d(t_info *info)
 	//		- game loop
 	init_mlx_env(info);
 	//	- mlx cleanup
-	(void)info;
 }
 
 int main_cub3d(char *file_arg, t_info *info)
@@ -80,7 +79,7 @@ int main_cub3d(char *file_arg, t_info *info)
 int	main(int argc, char *argv[])
 {
 	t_info	info;
-	int parsed_args;
+	int		parsed_args;
 
 	parsed_args = c3_options(&info, argc, argv);
 	if (parsed_args == -1)

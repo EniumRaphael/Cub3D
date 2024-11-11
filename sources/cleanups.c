@@ -6,18 +6,17 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 01:11:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/09 01:11:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:30:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_struct.h"
-
-#include <stdlib.h>
+#include "ft_string.h"
 
 static void	cleanup_cli(t_cli *cli_ctx)
 {
 	if (cli_ctx->file)
-		free(cli_ctx->file);
+		ft_free((void **)&cli_ctx->file);
 }
 
 static void	cleanup_map(t_map *map)
