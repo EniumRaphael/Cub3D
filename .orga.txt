@@ -1,0 +1,11 @@
+Raph
+	- ray cast
+	- mlx loop -> t_info
+		- mini map ->
+			scale to fit with fov_distance
+Bapt
+	- parsing
+	- error handling
+	- options
+	- mlx init
+	- mlx cleanup
