@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/11 17:04:46 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/11 21:34:38 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,13 @@ typedef enum e_tile
 
 typedef struct s_map
 {
-	int		fd;
-	char	*path;
-
+	int			fd;
+	char		*path;
 	t_dpoint	player_pos;
 	t_ipoint	size;
 	t_tile		*map;
 	char		**raw;
-}			t_map;
+}				t_map;
 
 // -- player utils
 
@@ -77,7 +76,8 @@ typedef struct s_player
 
 // -- cli utils
 
-typedef struct s_cli {
+typedef struct s_cli
+{
 	int			debug;
 	char		*file;
 	bool		save;
@@ -90,15 +90,12 @@ typedef enum e_error
 {
 	NO_ERROR = 0,
 	UNKNOWN_ERROR,
-
 	OPEN_FILE_ERROR,
 	READ_FILE_ERROR,
 	EXTENSION_FILE_ERROR,
 	NAME_FILE_ERROR,
 	MISSING_FILE_ERROR,
-
 	MALLOC_ERROR,
-
 	PARSE_ERROR,
 	CLI_ERROR,
 	MLX_ERROR

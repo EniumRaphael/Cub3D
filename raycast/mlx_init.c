@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:53:42 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/11 20:11:11 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/11 21:27:12 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@
 
 int	_keyhook(int keycode, t_info *info)
 {
+	(void)info;
 	if (keycode == 53 || keycode == 65307)
-		return (cleanup_info(info), EXIT_SUCCESS);
+		exit(EXIT_SUCCESS);						// return (cleanup_info(info), EXIT_SUCCESS);			/// Remove for segfault
 	return (0);
 }
 
 int	_redcross(t_info *info)
 {
-	return (cleanup_info(info), EXIT_SUCCESS);
+	(void) info;								// return (cleanup_info(info), EXIT_SUCCESS);			/// Remove for segfault
+	exit(EXIT_SUCCESS);
 }
 
 t_win_list	*_init_mlx_window(t_info *info)

@@ -6,14 +6,14 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/11 20:00:54 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/11 21:33:28 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "cub3d_struct.h"
+# include "cub3d_struct.h"
 # ifndef BONUS
 #  define BONUS 0
 # endif
