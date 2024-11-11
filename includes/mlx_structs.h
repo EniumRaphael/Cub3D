@@ -6,12 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 05:33:08 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/10 05:38:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:45:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_STRUCT_H
-# define MLX_STRUCT_H
+#ifndef MLX_STRUCTS_H
+# define MLX_STRUCTS_H
 
 # include <X11/X.h>
 # include <X11/Xlib.h>
@@ -25,31 +25,28 @@
 
 # define ENV_DISPLAY "DISPLAY"
 # define LOCALHOST "localhost"
-# define ERR_NO_TRUECOLOR "MinilibX Error : No TrueColor Visual available.\n"
-# define WARN_SHM_ATTACH "MinilibX Warning : X server can't attach shared memory.\n"
 
-typedef	struct	s_xpm_col
+typedef struct s_xpm_col
 {
 	int		name;
 	int		col;
-}				t_xpm_col;
+}			t_xpm_col;
 
-
-struct	s_col_name
+struct s_col_name
 {
 	char	*name;
 	int		color;
 };
 
-typedef struct	s_event_list
+typedef struct s_event_list
 {
 	int		mask;
 	int		(*hook)();
 	void	*param;
-}				t_event_list;
+}			t_event_list;
 
 /// @brief	window pointer from mlx
-typedef struct	s_win_list
+typedef struct s_win_list
 {
 	Window				window;
 	GC					gc;
@@ -61,9 +58,9 @@ typedef struct	s_win_list
 	void				*key_param;
 	void				*expose_param;
 	t_event_list		hooks[MLX_MAX_EVENT];
-}				t_win_list;
+}						t_win_list;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	XImage			*image;
 	Pixmap			pix;
@@ -76,10 +73,10 @@ typedef struct	s_img
 	int				format;
 	char			*data;
 	XShmSegmentInfo	shm;
-}				t_img;
+}					t_img;
 
 /// @brief	mlx pointer
-typedef struct	s_xvar
+typedef struct s_xvar
 {
 	Display		*display;
 	Window		root;
@@ -97,7 +94,7 @@ typedef struct	s_xvar
 	int			decrgb[6];
 	Atom		wm_delete_window;
 	Atom		wm_protocols;
-	int 		end_loop;
+	int			end_loop;
 }				t_xvar;
 
-#endif /* MLX_STRUCT_H */
+#endif /* MLX_STRUCTS_H */
