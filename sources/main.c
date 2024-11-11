@@ -6,12 +6,14 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/11 19:30:41 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/11 20:01:31 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "cub3d_struct.h"
+#include "mlx_functions.h"
+#include "mlx_structs.h"
 #include "ft_string.h"
 
 #include <fcntl.h>
@@ -55,6 +57,7 @@ void	run_cub3d(t_info *info)
 	//	- validity check
 	//  - mlx inits
 	//		- game loop
+	init_mlx_env(info);
 	//	- mlx cleanup
 	(void)info;
 }

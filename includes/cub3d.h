@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/09 01:19:41 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:00:54 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # include <stdbool.h>
 
+int		init_mlx_env(t_info *info);
 void	cleanup_info(t_info *info);
 int		c3_options(t_info *info, int argc, char *argv[]);
 void	c3_perror(t_info *info);
