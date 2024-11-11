@@ -1,6 +1,7 @@
 Cub3D
 build/
 to_do*
+.cache/
 # Prerequisites
 *.d
 

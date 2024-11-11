@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/09 01:52:06 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/11/11 17:18:13 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CFLAGS += -g3 -MMD
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
-INCLUDES = -I ./includes -I ./includes/include -I ./minilibx-linux
+INCLUDES = -I /opt/X11/include -I ./includes -I ./includes/include -I ./minilibx-linux
 
 # Paths
 LIBFT_DIR = ./libft

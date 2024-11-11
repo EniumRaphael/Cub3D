@@ -1,4 +1,4 @@
-CompilerFlags:
+CompileFlags:
   Add:
     - "-xc"
     - "-I/home/rparodi/Documents/cub3d/includes"

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/10 05:37:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:04:46 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ typedef struct s_map
 typedef struct s_player
 {
 	t_dpoint	pos;
-	t_dpoint	dir;
-	t_dpoint	view;
+	double		view;
 }			t_player;
 
 // -- cli utils
