@@ -6,20 +6,21 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/11 21:34:07 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/12 06:20:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "cub3d_struct.h"
-#include "mlx_functions.h"
-#include "mlx_structs.h"
 #include "ft_string.h"
+#include "mlx_functions.h"
 
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+// not normed but we'll take care of this as a niceties at the last 
+// possible moment :)
 void	dump_info(t_info *info)
 {
 	const char *bool_str[2] = { "True", "False"};
@@ -52,13 +53,16 @@ void	check_err(t_info *info)
 
 void	run_cub3d(t_info *info)
 {
-	// code here
+	// todo: here
 	//  - parse map
 	//	- validity check
-	//  - mlx inits
-	//		- game loop
 	init_mlx_env(info);
-	//	- mlx cleanup
+	mlx_loop(info->mlx_ptr);
+//	- game loop : already loops over the mlx_ptr 
+//	 -> get events if key pressed move player + run math to re-draw screen
+//	- mlx cleanup : already called in parent function deprecated to call here
+//	 -> previous 'segfault' were due to someone calling cleaup instead of 
+//	 mlx_loop_end
 }
 
 int main_cub3d(char *file_arg, t_info *info)
@@ -73,7 +77,7 @@ int main_cub3d(char *file_arg, t_info *info)
 	if (info->cli_ctx.debug)
 		(dump_info(info), printf("file_arg: %s\n", file_arg));
 	run_cub3d(info);
-	return (cleanup_info(info), EXIT_SUCCESS);
+	return (cleanup_info(info), info->last_error);
 }
 
 int	main(int argc, char *argv[])

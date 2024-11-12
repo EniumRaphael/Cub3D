@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/11 20:02:50 by rparodi          ###   ########.fr        #
+#    Updated: 2024/11/12 06:12:02 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,14 +42,16 @@ MLXFLAGS = -L$(MLX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext -lXrender -lXrandr -lX
 LDFLAGS += $(MLXFLAGS)
 
 SRC =\
-	 	raycast/mlx_init.c		\
-		parsing/arguments.c		\
-		sources/cleanups.c		\
-		sources/error.c			\
-		sources/main.c			\
-		sources/options.c		\
-		sources/options_impl.c	\
-		sources/rgb_to_color.c
+	raycast/frame_update.c	\
+	mlx_layer/mlx_init.c	\
+	parsing/arguments.c		\
+	sources/main.c			\
+	sources/cleanups.c		\
+	sources/options.c		\
+	sources/rgb_to_color.c	\
+	sources/error.c			\
+	sources/options_impl.c
+	 
 
 # Objects
 OBJDIRNAME = ./build
