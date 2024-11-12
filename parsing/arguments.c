@@ -24,11 +24,11 @@
 void	parse_args(char *arg, t_info *inf)
 {
 	if (arg == NULL && inf->cli_ctx.file == NULL)
-		return (inf->last_error = MISSING_FILE_ERROR, (void)0);
+		return (inf->last_error = ERROR_MISSING_FILE, (void)0);
 	if (arg && ft_strlen(arg) < 5)
-		return (inf->last_error = NAME_FILE_ERROR, (void)0);
+		return (inf->last_error = ERROR_NAME_FILE, (void)0);
 	if (arg && ft_strend_with(arg, FILE_EXTENSION) == false)
-		return (inf->last_error = EXTENSION_FILE_ERROR, (void)0);
+		return (inf->last_error = ERROR_EXTENSION_FILE, (void)0);
 	if (arg && inf->cli_ctx.file == NULL)
 		inf->cli_ctx.file = ft_strdup(arg);
 	inf->last_error = NO_ERROR;

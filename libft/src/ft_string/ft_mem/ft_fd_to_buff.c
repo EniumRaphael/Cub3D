@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 19:52:02 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/06/13 16:46:24 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:38:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ char	*ft_fd_to_buff(int fd)
 		return (NULL);
 	buff[ret] = '\0';
 	file = ft_strdup(buff);
-	while (ret == BUFFER_SIZE)
+	while (ret == BUFFER_SIZE && file)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
 		if (ret == -1)
 			return (ft_free((void **)&file), NULL);
-		buff[ret] = '\0';
+		buff[ret + 1 * (ret == 0)] = '\0';
 		prev = file;
 		file = ft_strjoin(file, buff);
 		ft_free((void **)&prev);

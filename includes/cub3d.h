@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/11 21:33:28 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/12 08:33:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,16 @@
 # include <stdbool.h>
 
 int		init_mlx_env(t_info *info);
+
 void	cleanup_info(t_info *info);
+
 int		c3_options(t_info *info, int argc, char *argv[]);
 void	c3_perror(t_info *info);
 void	print_error(const char *msg);
+
+void	parse_map(t_info *info);
 void	parse_args(char *arg, t_info *inf);
+
 int		main(int argc, char *argv[]);
 
 #endif /* CUB3D_H */

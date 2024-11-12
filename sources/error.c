@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/10 16:13:25 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/12 08:45:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 const char *g_error_message[] = {
 	"no error",
 	"unknown error",
-
 	"could not open file",
 	"could not read file",
 	"bad file extension",
@@ -30,6 +29,7 @@ const char *g_error_message[] = {
 	"parse error",
 	"cli error",
 	"mlx error",
+	"not implemented",
 };
 
 void	c3_perror(t_info *info)
@@ -47,5 +47,5 @@ void	print_error(const char *msg)
 	ft_putstr_fd(RED, STDERR_FILENO);
 	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putstr_fd(RESET, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	ft_putstr_fd(".\n", STDERR_FILENO);
 }

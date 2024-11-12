@@ -48,10 +48,10 @@ int	init_mlx_env(t_info *info)
 {
 	info->mlx_ptr = mlx_init();
 	if (!info->mlx_ptr)
-		return (MLX_ERROR);
+		return (ERROR_MLX);
 	info->win_ptr = c3_init_mlx_window(info);
 	if (!info->win_ptr)
-		return (MLX_ERROR);
+		return (ERROR_MLX);
 	mlx_hook(info->win_ptr, KeyPress, KeyPressMask, c3_keyhook, info);
 	mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask, c3_redcross, info);
 	mlx_loop_hook(info->mlx_ptr, c3_frame_update, info);

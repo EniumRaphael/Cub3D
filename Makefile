@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/12 06:12:02 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/11/12 09:17:25 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC =\
 	raycast/frame_update.c	\
 	mlx_layer/mlx_init.c	\
 	parsing/arguments.c		\
+	parsing/map.c			\
 	sources/main.c			\
 	sources/cleanups.c		\
 	sources/options.c		\

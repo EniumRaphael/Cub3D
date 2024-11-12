@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/11 21:34:38 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/12 11:05:49 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ typedef struct s_map
 	t_dpoint	player_pos;
 	t_ipoint	size;
 	t_tile		*map;
-	char		**raw;
+	char		**fraw;
+	t_img		texture[4];
+	t_color		bg_colors[2];
 }				t_map;
 
 // -- player utils
@@ -89,16 +91,17 @@ typedef struct s_cli
 typedef enum e_error
 {
 	NO_ERROR = 0,
-	UNKNOWN_ERROR,
-	OPEN_FILE_ERROR,
-	READ_FILE_ERROR,
-	EXTENSION_FILE_ERROR,
-	NAME_FILE_ERROR,
-	MISSING_FILE_ERROR,
-	MALLOC_ERROR,
-	PARSE_ERROR,
-	CLI_ERROR,
-	MLX_ERROR
+	ERROR_UNKNOWN,
+	ERROR_OPEN_FILE,
+	ERROR_READ_FILE,
+	ERROR_EXTENSION_FILE,
+	ERROR_NAME_FILE,
+	ERROR_MISSING_FILE,
+	ERROR_MALLOC,
+	ERROR_PARSE,
+	ERROR_CLI,
+	ERROR_MLX,
+	ERROR_IMPLEM,
 }			t_error;
 
 // -- main struct

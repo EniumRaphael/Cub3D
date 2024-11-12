@@ -1,12 +1,11 @@
 CompileFlags:
   Add:
-    - "-Werror"
-    - "-Wextra"
-    - "-Wall"
-    - "-g3"
+    - "-Werror -Wextra -Wall"
     - "-I/opt/X11/include"
     - "-I/Users/raphael/Documents/42_cursus/circle4/Cub3D/includes"
     - "-I/Users/raphael/Documents/42_cursus/circle4/Cub3D/includes/include"
-    #    - "-I/Users/raphael/Documents/42_cursus/circle4/Cub3D/minilibx-linux"
     - "-I/home/iron/Documents/code/42school/Cub3D/includes"
     - "-I/home/iron/Documents/code/42school/Cub3D/includes/include"
+    - "-I/home/bgoulard/Documents/projects/shared/common/Cub3D/includes"
+    - "-I/home/bgoulard/Documents/projects/shared/common/Cub3D/includes/include"
+    - "-xc"

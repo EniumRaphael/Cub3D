@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 01:11:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/12 05:49:23 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:06:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ static void	cleanup_map(t_map *map)
 {
 	if (map->fd)
 		(close(map->fd), map->fd = 0);
+	if (map->fraw)
+		(ft_free_2d((void **)map->fraw), map->fraw = NULL);
 }
 
 static void	cleanup_mlx(t_info *info)
 {
-	mlx_destroy_window(info->mlx_ptr, info->win_ptr);
-	mlx_destroy_display(info->mlx_ptr);
+	if (info->mlx_ptr && info->win_ptr)
+		mlx_destroy_window(info->mlx_ptr, info->win_ptr);
+	if (info->mlx_ptr)
+		mlx_destroy_display(info->mlx_ptr);
 	if (info->mlx_ptr)
 		ft_free((void **)&info->mlx_ptr);
 }
