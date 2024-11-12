@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/12 11:05:49 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:03:39 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ typedef enum e_error
 typedef struct s_info
 {
 	t_error		last_error;
-
 	t_xvar		*mlx_ptr;
 	t_win_list	*win_ptr;
 	t_map		map;
