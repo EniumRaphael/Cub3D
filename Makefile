@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/12 09:17:25 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/11/12 12:39:32 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,15 +42,16 @@ MLXFLAGS = -L$(MLX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext -lXrender -lXrandr -lX
 LDFLAGS += $(MLXFLAGS)
 
 SRC =\
-	raycast/frame_update.c	\
 	mlx_layer/mlx_init.c	\
 	parsing/arguments.c		\
 	parsing/map.c			\
-	sources/main.c			\
+	raycast/frame_update.c	\
+	raycast/rc_utils.c		\
 	sources/cleanups.c		\
+	sources/error.c			\
+	sources/main.c			\
 	sources/options.c		\
 	sources/rgb_to_color.c	\
-	sources/error.c			\
 	sources/options_impl.c
 	 
 
