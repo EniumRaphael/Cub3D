@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/12 08:33:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/13 06:56:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # endif
 
 # include <stdbool.h>
+
+/// @brief Createsa a blank map for rapahael to test the raycasting
+/// @note Dev only function.
+void	blank(t_info *info);
 
 int		init_mlx_env(t_info *info);
 
