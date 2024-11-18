@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/12 09:17:25 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/11/18 14:44:10 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,6 +140,17 @@ footer:
 		@printf "$(GOLD)                  \\| |._.| |/-\`$(END)\n"
 		@printf "$(GOLD)                   '\"'   '\"'$(END)\n"
 		@printf '              $(GREY)The compilation is$(END) $(GOLD)finish$(END)\n               $(GREY)Have a good $(END)$(GOLD)correction !$(END)\n'
+
+clangd:
+	@echo -en			\
+	"CompileFlags:\n"	\
+	"  Add:\n"			\
+	"    - \"-Wall -Wextra -Werror\"\n"	\
+	"    - \"-I/opt/X11/include\"\n"	\
+	"    - \"-I"$(shell pwd)"/includes\"\n"	\
+	"    - \"-I"$(shell pwd)"/includes/include\"\n"	\
+	"    - \"-xc\"\n"	\
+	> .clangd
 
 # Phony targets
 .PHONY: all bonus clean fclean re
