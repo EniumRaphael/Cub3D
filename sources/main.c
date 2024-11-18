@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/12 09:50:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/13 06:56:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	run_cub3d(t_info *info)
 	if (info->last_error != NO_ERROR)
 		return ;
 	// todo: here
-	//  - parse map
 	//	- validity check
 	init_mlx_env(info);
 	mlx_loop(info->mlx_ptr);
