@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/12 08:45:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:31:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include <unistd.h>
 
-const char *g_error_message[] = {
+const char *const	g_error_message[] = {
 	"no error",
 	"unknown error",
 	"could not open file",
@@ -29,6 +29,7 @@ const char *g_error_message[] = {
 	"parse error",
 	"cli error",
 	"mlx error",
+	"texture format error",
 	"not implemented",
 };
 

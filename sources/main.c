@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/13 06:56:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:17:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 // not normed but we'll take care of this as a niceties at the last 
 // possible moment :)
 void	dump_info(t_info *info)
 {
-	const char *bool_str[2] = { "True", "False"};
+	const char	*bool_str[2] = {"True", "False"};
+	size_t		i;
 
+	i = 0;
 	printf("t_info:\n");
 	printf("\tcli_ctx:\n");
 	printf("\t\tfile: %s\n", info->cli_ctx.file);
@@ -35,9 +38,13 @@ void	dump_info(t_info *info)
 	printf("\t\tpath:%s\n", info->map.path);
 	printf("\t\tfd:%d\n", info->map.fd);
 	printf("\t\tsize:\t(x:%d, y:%d)\n", info->map.size.x, info->map.size.y);
-	printf("\t\tplayer_pos:\t(x:%lf, y:%lf)\n", info->map.player_pos.x, info->map.player_pos.y);
-	for (size_t i = 0; info->map.fraw[i]; i++)
+	printf("\t\tplayer_pos:\t(x:%lf, y:%lf)\n", info->map.player_pos.x, \
+	info->map.player_pos.y);
+	while (info->map.fraw[i])
+	{
 		printf("\t\tmap.fraw[%zu]: %s\n", i, info->map.fraw[i]);
+		i++;
+	}
 }
 
 void	check_err(t_info *info)
@@ -55,6 +62,8 @@ void	check_err(t_info *info)
 
 void	run_cub3d(t_info *info)
 {
+	if (init_mlx_env(info) != NO_ERROR)
+		return ;
 	parse_map(info);
 	if (info->cli_ctx.debug)
 		dump_info(info);
@@ -62,7 +71,7 @@ void	run_cub3d(t_info *info)
 		return ;
 	// todo: here
 	//	- validity check
-	init_mlx_env(info);
+	printf("launching mlx\n");
 	mlx_loop(info->mlx_ptr);
 //	- game loop : already loops over the mlx_ptr 
 //	 -> get events if key pressed move player + run math to re-draw screen
@@ -75,7 +84,7 @@ void	run_cub3d(t_info *info)
 /// @param file_arg the file path to the .cub file
 /// @param info the info structure
 /// @return false (0) if no error, true (1) if an error
-int main_cub3d(char *file_arg, t_info *info)
+int	main_cub3d(char *file_arg, t_info *info)
 {
 	if (info->cli_ctx.help)
 		return (cleanup_info(info), EXIT_SUCCESS);

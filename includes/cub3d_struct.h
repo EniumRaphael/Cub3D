@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/13 07:15:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:07:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # define FILE_EXTENSION ".cub"
 # define FILE_EXTENSION_LEN 4
+# define BG_CLG 0
+# define BG_FLR 1
 
 // -- graphic utils
 
@@ -109,6 +111,7 @@ typedef enum e_error
 	ERROR_PARSE,
 	ERROR_CLI,
 	ERROR_MLX,
+	ERROR_TEXTURE_FORMAT,
 	ERROR_IMPLEM,
 }			t_error;
 

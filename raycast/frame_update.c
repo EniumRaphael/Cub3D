@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 06:02:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/12 06:21:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:12:29 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int c3_frame_update(void *inf_ptr)
 
 	info = inf_ptr;
 	mlx_clear_window(info->mlx_ptr, info->win_ptr);
-	ft_putendl_fd("update called\n", STDOUT_FILENO);
+//	ft_putendl_fd("update called\n", STDOUT_FILENO);
 	return (EXIT_SUCCESS);
 }
