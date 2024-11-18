@@ -1,6 +1,9 @@
 .direnv/
 Cub3D
 build/
+.clangd
+.clang*
+
 to_do*
 .cache/
 # Prerequisites
