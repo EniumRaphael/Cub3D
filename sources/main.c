@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/13 06:56:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:31:35 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+void blank(t_info *info);
 
 // not normed but we'll take care of this as a niceties at the last 
 // possible moment :)
@@ -55,7 +57,7 @@ void	check_err(t_info *info)
 
 void	run_cub3d(t_info *info)
 {
-	parse_map(info);
+	blank(info);
 	if (info->cli_ctx.debug)
 		dump_info(info);
 	if (info->last_error != NO_ERROR)
