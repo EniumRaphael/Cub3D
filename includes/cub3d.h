@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/13 06:56:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:55:10 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # ifndef BONUS
 #  define BONUS 0
 # endif
+
+# define TILES_SIZE 64
 
 # include <stdbool.h>
 
