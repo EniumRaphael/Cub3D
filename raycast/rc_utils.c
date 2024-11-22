@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:24:35 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/22 15:35:10 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/22 20:01:59 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ double	cub_convert_deg_to_rad(double degrees)
  */
  double	rc_launch(t_info *info, double angle)
  {
-  double		distance;
+  double	distance;
   t_dpoint	direction;
   t_dpoint	rayon;
 
@@ -85,15 +85,11 @@ double	cub_convert_deg_to_rad(double degrees)
      }
  }
 
- /* ----------------------------------- */
- /* Some utils for the mlx window view  */
- /* ----------------------------------- */
-
  t_win_list	*c3_init_mlx_window(t_info *info)
  {
-  void	*window;
-  int		i;
-  int		j;
+	void	*window;
+	int		i;
+	int		j;
 	int x;
 	int y;
 
@@ -101,21 +97,21 @@ double	cub_convert_deg_to_rad(double degrees)
 	y = 0;
 	mlx_get_screen_size(info->mlx_ptr, &x, &y);
 
-  i = 0;
-  window = mlx_new_window(info->mlx_ptr, x, y, "Raycasting");
-  while (i < x)
-  {
-   j = 0;
-   while (j < y)
-   {
-    if (info->map.fraw[i / info->map.size.x][j / info->map.size.y] == '1')
-     mlx_pixel_put(info->mlx_ptr, window, i, j, 0xFFFFFF);
-    else
-     mlx_pixel_put(info->mlx_ptr, window, i, j, 0x000000);
-    j++;
-   }
-   i++;
-  }
-  mlx_loop(info->mlx_ptr);
-  return (window);
+	i = 0;
+	window = mlx_new_window(info->mlx_ptr, x, y, "Raycasting");
+	while (i < x)
+	{
+		j = 0;
+		while (j < y)
+		{
+			if (info->map.fraw[i / info->map.size.x][j / info->map.size.y] == '1')
+				mlx_pixel_put(info->mlx_ptr, window, i, j, 0xFFFFFF);
+			else
+				mlx_pixel_put(info->mlx_ptr, window, i, j, 0x000000);
+			j++;
+		}
+	 i++;
+	}
+	mlx_loop(info->mlx_ptr);
+	return (window);
  }

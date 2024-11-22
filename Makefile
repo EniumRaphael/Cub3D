@@ -26,7 +26,7 @@ CFLAGS += -g3 -MMD
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
-INCLUDES = -I /opt/X11/include -I ./includes -I ./includes/include -I ./minilibx-linux
+INCLUDES = -I /usr/include  -I /opt/X11/include -I ./includes -I ./includes/include -I ./minilibx-linux
 
 # Paths
 LIBFT_DIR = ./libft
