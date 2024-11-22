@@ -28,7 +28,7 @@ t_img	*mlx_load_image(t_info *info, char *path)
 bool	mlx_load_all_textures(t_info *info)
 {
 	size_t	i;
-	
+
 	i = 0;
 	info->map.texture[0] = mlx_load_image(info, "../textures/a.xpm");
 	info->map.texture[1] = mlx_load_image(info, "../textures/b.xpm");

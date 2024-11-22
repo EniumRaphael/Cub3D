@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:53:42 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/12 06:19:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:17:07 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ int	c3_redcross(t_info *info)
 {
 	return (mlx_loop_end(info->mlx_ptr), EXIT_SUCCESS);
 }
-
-t_win_list	*c3_init_mlx_window(t_info *info)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	mlx_get_screen_size(info->mlx_ptr, &x, &y);
-	return (mlx_new_window(info->mlx_ptr, x, y, "C3D"));
-}
+t_win_list	*c3_init_mlx_window(t_info *info);
+/*t_win_list	*c3_init_mlx_window(t_info *info)*/
+/*{*/
+/*	int x;*/
+/*	int y;*/
+/**/
+/*	x = 0;*/
+/*	y = 0;*/
+/*	mlx_get_screen_size(info->mlx_ptr, &x, &y);*/
+/*	return (mlx_new_window(info->mlx_ptr, x, y, "C3D"));*/
+/*}*/
 
 int	init_mlx_env(t_info *info)
 {
