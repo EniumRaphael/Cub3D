@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:24:35 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/22 20:01:59 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/23 12:33:39 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ double	cub_convert_deg_to_rad(double degrees)
      }
  }
 
- t_win_list	*c3_init_mlx_window(t_info *info)
- {
+t_win_list	*c3_init_mlx_window(t_info *info)
+{
 	void	*window;
 	int		i;
 	int		j;
