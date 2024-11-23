@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:14:51 by bgoulard          #+#    #+#             */
-/*   Updated: 2023/11/09 10:03:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:42:11 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	(void) write(fd, &c, 1);
 	return ;
 }

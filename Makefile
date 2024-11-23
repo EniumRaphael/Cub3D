@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/22 13:06:59 by rparodi          ###   ########.fr        #
+#    Updated: 2024/11/23 12:41:29 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ CFLAGS += -g3 -MMD
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
-INCLUDES = -I /usr/include  -I /opt/X11/include -I ./includes -I ./includes/include -I ./minilibx-linux
-
+# INCLUDES += -I /opt/X11/include
+INCLUDES = -I /usr/include -I ./includes -I ./includes/include -I ./minilibx-linux
+ 
 # Paths
 LIBFT_DIR = ./libft
 MLX_DIR = ./minilibx-linux
@@ -36,7 +37,8 @@ MLX_DIR = ./minilibx-linux
 LDFLAGS = -L./build -lft -lm
 
 # MiniLibX flags for macOS with XQuartz
-MLXFLAGS = -L$(MLX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext -lXrender -lXrandr -lXi
+MLXFLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lXrender -lXrandr -lXi
+#MLXFLAGS += -L/opt/X11/lib
 
 # Add MLXFLAGS to the linker flags
 LDFLAGS += $(MLXFLAGS)
