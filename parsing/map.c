@@ -6,21 +6,25 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 08:31:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/18 17:21:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:53:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// proj
 #include "cub3d.h"
 #include "cub3d_struct.h"
+// mlx
 #include "mlx_functions.h"
-
-#include "ft_string.h"
-#include "ft_optional.h"
-#include "ft_optional_types.h"
-#include "ft_vector.h"
+// libft - types
 #include "ft_vector_types.h"
+#include "ft_optional_types.h"
+// libft
 #include "ft_math.h"
+#include "ft_string.h"
+#include "ft_vector.h"
+#include "ft_optional.h"
 
+// sys std
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -34,10 +38,12 @@ void	*load_file(void *data)
 	info = (t_info *)data;
 	file = ft_fd_to_buff(info->map.fd);
 	if (file == NULL)
-		return (info->last_error = ERROR_READ_FILE, NULL);
+		return (info->errno_state = errno,
+		info->last_error = ERROR_READ_FILE, NULL);
 	info->map.fraw = ft_split(file, '\n');
 	if (info->map.fraw == NULL)
-		return (info->last_error = ERROR_MALLOC, NULL);
+		return (info->errno_state = errno,
+info->last_error = ERROR_MALLOC, NULL);
 	ft_free((void **)&file);
 	info->last_error = NO_ERROR;
 	return (info);
@@ -69,13 +75,15 @@ bool	load_texture(t_info *info, const char *str, const char **id_str)
 		{
 			texture.path = ft_strtrim(str + ft_strlen(id_str[i]), " ");
 			if (texture.path == NULL)
-				return (info->last_error = ERROR_MALLOC, false);
+				return (info->errno_state = errno,
+info->last_error = ERROR_MALLOC, false);
 			if (ft_strend_with(texture.path, ".xpm") == false)
 				return (info->last_error = ERROR_TEXTURE_FORMAT, false);
 			texture.img = mlx_xpm_file_to_image(info->mlx_ptr, texture.path, \
 			&texture.width, &texture.height);
 			if (texture.img == NULL)
-				return (info->last_error = ERROR_MLX, false); 
+				return (info->errno_state = errno,
+info->last_error = ERROR_MLX, false); 
 			return (info->map.texture[i] = texture, true);
 		}
 		i++;
@@ -185,13 +193,13 @@ void	str_to_tile(const char *str, t_tile *tile, size_t size)
 	while (str[i])
 	{
 		if (str[i] == '1' || i[str] == ' ')
-			tile[i] = WALL;
+			tile[i].raw_tile = WALL;
 		else
-			tile[i] = EMPTY;
+			tile[i].raw_tile = EMPTY;
 		i++;
 	}
 	while (i < size)
-		tile[i++] = WALL;
+		tile[i++].raw_tile = WALL;
 }
 
 t_vector	*load_vector(t_map *map)
@@ -220,6 +228,7 @@ void	*load_tiles(void *data)
 	t_info		*info;
 	t_vector	*str_map;
 	size_t		i;
+	t_dpoint	pos;
 
 	info = (t_info *)data;
 	str_map = load_vector(&info->map);
@@ -231,25 +240,68 @@ void	*load_tiles(void *data)
 		return (ft_vec_destroy(&str_map), \
 		info->last_error = ERROR_MALLOC, NULL);
 	i = 0;
+	ft_bzero(&pos, sizeof(t_dpoint));
 	while (ft_vec_at(str_map, i))
 	{
 		str_to_tile(ft_vec_at(str_map, i), info->map.map + \
 		(i * info->map.size.x), info->map.size.x);
+		if (ft_strchrs(ft_vec_at(str_map, i), "SNWE"))
+		{
+			if (pos.x != 0 || pos.y != 0 || i == 0)
+				return (ft_vec_destroy(&str_map), \
+				info->last_error = ERROR_PARSE, NULL);
+			pos.x = i + .5;
+			pos.y = ft_strchrs(ft_vec_at(str_map, i), "SNWE") - ft_vec_at(str_map, i) + .5;
+			info->player.pos = pos;
+		}
 		i++;
 	}
 	return (ft_vec_destroy(&str_map), info);
 }
 
+t_tile	*c3_get_cell(t_tile *map, t_ipoint dimensions, t_ipoint pos)
+{
+	return (map + (pos.y * dimensions.x + pos.x));
+}
+
+bool	flood_fill(t_tile *tiles, t_ipoint pos, t_ipoint maxs)
+{
+	t_tile			*current;
+	size_t			i;
+	const t_ipoint	to_check[] = {
+		(t_ipoint){pos.x + 1, pos.y},
+		(t_ipoint){pos.x - 1, pos.y},
+		(t_ipoint){pos.x, pos.y + 1},
+		(t_ipoint){pos.x, pos.y - 1},
+		(t_ipoint){pos.x + 1, pos.y + 1},
+		(t_ipoint){pos.x - 1, pos.y + 1},
+		(t_ipoint){pos.x + 1, pos.y - 1},
+		(t_ipoint){pos.x - 1, pos.y - 1},
+	};
+
+	if (pos.x < 0 || pos.y < 0 || pos.x >= maxs.x || pos.y >= maxs.y)
+		return (false);
+	current = c3_get_cell(tiles, maxs, pos);
+	if (current->tile_visited == true || current->tile_type == WALL)
+		return (true);
+	current->tile_visited = true;
+	i = 0;
+	while (i != (sizeof(to_check) / sizeof(to_check[0])))
+		if (flood_fill(tiles, to_check[i++], maxs) == false)
+			return (false);
+	return (true);
+}
+
 void	*traverse_map(void *data)
 {
-	t_info	*info;
+	t_info		*info;
+	t_ipoint	pos_start;
 
 	info = (t_info *)data;
-	/// TODO: 
-	/// modify tiles to add bit feild to know if visited instead of alloc bool
-	///
-	info->last_error = ERROR_IMPLEM;
-	return (NULL);
+	pos_start = (t_ipoint){.x = info->player.pos.x, .y = info->player.pos.y};
+	if (flood_fill(info->map.map, pos_start, info->map.size) == false)
+		return (info->last_error = ERROR_PARSE, NULL);
+	return (info);
 }
 
 void	parse_map(t_info *info)

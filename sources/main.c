@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/18 14:17:27 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:51:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	check_err(t_info *info)
 		return (info->last_error = ERROR_EXTENSION_FILE, (void)0);
 	info->map.fd = open(info->cli_ctx.file, O_RDONLY);
 	if (info->map.fd == -1)
-		return (info->last_error = ERROR_OPEN_FILE, (void)0);
+		return (info->errno_state = errno,
+		info->last_error = ERROR_OPEN_FILE, (void)0);
 }
 
 void	run_cub3d(t_info *info)
@@ -69,15 +70,14 @@ void	run_cub3d(t_info *info)
 		dump_info(info);
 	if (info->last_error != NO_ERROR)
 		return ;
+	if (info->cli_ctx.no_graphics)
+		printf("no graphics mode\n");
 	// todo: here
 	//	- validity check
 	printf("launching mlx\n");
 	mlx_loop(info->mlx_ptr);
 //	- game loop : already loops over the mlx_ptr 
 //	 -> get events if key pressed move player + run math to re-draw screen
-//	- mlx cleanup : already called in parent function deprecated to call here
-//	 -> previous 'segfault' were due to someone calling cleaup instead of 
-//	 mlx_loop_end
 }
 
 /// @brief main function of the cub3d executable

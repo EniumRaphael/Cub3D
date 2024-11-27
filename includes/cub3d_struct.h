@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/18 17:07:15 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:50:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,19 @@ typedef struct s_dpoint
 
 typedef enum e_tile
 {
-	EMPTY,
-	WALL
-}			t_tile;
+	EMPTY = 0,
+	WALL = 1,
+}			t_tile_type;
+
+typedef union u_tile
+{
+	int		raw_tile;
+	struct {
+		unsigned int	tile_visited: 1; // parsing
+		unsigned int    other: 27; // disponible
+		unsigned int	tile_type: 4; // 16 tile types possible
+	};
+} t_tile;
 
 typedef struct s_map
 {
@@ -94,6 +104,7 @@ typedef struct s_cli
 	char		*file;
 	bool		save;
 	bool		help;
+	bool		no_graphics;
 }			t_cli;
 
 // -- error utils
@@ -120,6 +131,7 @@ typedef enum e_error
 typedef struct s_info
 {
 	t_error		last_error;
+	int			errno_state;
 
 	t_xvar		*mlx_ptr;
 	t_win_list	*win_ptr;

@@ -6,12 +6,20 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 01:12:16 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/15 09:08:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:35:14 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_struct.h"
 #include "ft_string.h"
+
+void	c3_set_parse_excl(void *usr_control_struct)
+{
+	t_cli	*cli_ctx;
+
+	cli_ctx = (t_cli *)usr_control_struct;
+	cli_ctx->no_graphics = true;
+}
 
 void	c3_set_file(void *usr_control_struct, const char *arg)
 {

@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/18 11:31:05 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/27 12:00:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	c3_perror(t_info *info)
 {
 	if (info->last_error == NO_ERROR)
 		return ;
-	print_error(g_error_message[info->last_error]);
+	print_error(g_error_message[info->last_error], info->errno_state);
 }
 
-void	print_error(const char *msg)
+void	print_error(const char *msg, int state)
 {
 	ft_putstr_fd(BOLD_RED, STDERR_FILENO);
 	ft_putstr_fd("Error:\n", STDERR_FILENO);
@@ -48,5 +48,13 @@ void	print_error(const char *msg)
 	ft_putstr_fd(RED, STDERR_FILENO);
 	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putstr_fd(RESET, STDERR_FILENO);
+	if (state != 0)
+	{
+		ft_putstr_fd(YELLOW, STDERR_FILENO);
+		ft_putstr_fd(" due to:\n", STDERR_FILENO);
+		ft_putstr_fd(BOLD_YELLOW, STDERR_FILENO);
+		ft_putstr_fd(ft_strerror(state), STDERR_FILENO);
+		ft_putstr_fd(RESET, STDERR_FILENO);
+	}
 	ft_putstr_fd(".\n", STDERR_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 01:14:09 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/15 09:03:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:35:08 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	c3_options(t_info *info, int argc, char *argv[])
 	{"debug", 'd', c3_set_debug, 0},
 	{"save", 's', c3_set_save, 0},
 	{"help", 'h', c3_print_help, 0},
+	{"parse-only", 'p', c3_set_parse_excl, 0},
 		// add more options here put the implementation in options_impl.c
 		//	 if you want custom option see ft_args_types.h for more info 
 		//	 code example in it.
