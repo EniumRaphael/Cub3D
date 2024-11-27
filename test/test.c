@@ -231,8 +231,6 @@ int	render_frame(t_data *data)
 		else
 			color = 0x00FFFF00;
 
-		if (side == 1) color = (color >> 1) & 8355711; // Make sides darker
-
 		for(int y = drawStart; y < drawEnd; y++)
 			my_mlx_pixel_put(data, x, y, color);
 	}
