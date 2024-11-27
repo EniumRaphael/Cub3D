@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/20 13:55:10 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:37:20 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	parse_map(t_info *info);
 void	parse_args(char *arg, t_info *inf);
 
 int		main(int argc, char *argv[]);
+void	shelves_launch(t_info *info);
 
 #endif /* CUB3D_H */

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/20 15:13:28 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:35:13 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define FILE_EXTENSION ".cub"
 # define FILE_EXTENSION_LEN 4
 
+#define FOV 65
+#define TILE_SIZE 64
 // -- graphic utils
 
 typedef struct s_color

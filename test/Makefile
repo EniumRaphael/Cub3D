@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/27 16:05:42 by rparodi          ###   ########.fr        #
+#    Updated: 2024/11/26 14:41:12 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,38 +26,23 @@ CFLAGS += -g3 -MMD
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 
-INCLUDES += -I /opt/X11/include
-INCLUDES = -I ./includes -I ./includes/include -I ./minilibx-linux
+# INCLUDES += -I /opt/X11/include
+INCLUDES = -I /usr/include -I ./includes -I ./includes/include -I ./minilibx-linux
  
 # Paths
-LIBFT_DIR = ./libft
 MLX_DIR = ./minilibx-linux
 
 # Library flags
-LDFLAGS = -L./build -lft -lm
+LDFLAGS = -L./build -lm
 
 # MiniLibX flags for macOS with XQuartz
 MLXFLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext
-MLXFLAGS += -L/opt/X11/lib
+#MLXFLAGS += -L/opt/X11/lib
 
 # Add MLXFLAGS to the linker flags
 LDFLAGS += $(MLXFLAGS)
 
-SRC =\
-		mlx_layer/mlx_init.c \
-		mlx_layer/mlx_load_texture.c \
-		raycast/frame_update.c \
-		raycast/rc_utils.c \
-		sources/options_impl.c \
-		sources/main.c \
-		sources/error.c \
-		sources/cleanups.c \
-		sources/options.c \
-		sources/rgb_to_color.c \
-		parsing/map.c \
-		parsing/blank_for_raph.c \
-		parsing/arguments.c
-	 
+SRC = test2.c
 
 # Objects
 OBJDIRNAME = ./build
@@ -98,13 +83,11 @@ fclean: clean
 re: header fclean all
 
 # Compile external libraries
-build/libft.a:
-	@make --no-print-directory -C $(LIBFT_DIR)
 build/libmlx.a:
 	@make --no-print-directory -C $(MLX_DIR)
 
 # Dependences for all
-$(NAME): $(OBJ) build/libft.a build/libmlx.a
+$(NAME): $(OBJ) build/libmlx.a
 	@mkdir -p $(OBJDIRNAME)
 	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
 	@$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $(NAME)
