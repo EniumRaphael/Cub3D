@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/26 14:41:12 by rparodi          ###   ########.fr        #
+#    Updated: 2024/11/27 19:51:13 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,16 +33,16 @@ INCLUDES = -I /usr/include -I ./includes -I ./includes/include -I ./minilibx-lin
 MLX_DIR = ./minilibx-linux
 
 # Library flags
-LDFLAGS = -L./build -lm
+LDFLAGS = -L./build -lmlx -lm
 
 # MiniLibX flags for macOS with XQuartz
-MLXFLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext
+MLXFLAGS = -L$(MLX_DIR) -lX11 -lXext
 #MLXFLAGS += -L/opt/X11/lib
 
 # Add MLXFLAGS to the linker flags
 LDFLAGS += $(MLXFLAGS)
 
-SRC = test2.c
+SRC = test.c
 
 # Objects
 OBJDIRNAME = ./build

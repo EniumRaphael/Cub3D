@@ -6,11 +6,10 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/27 16:00:23 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/27 19:36:33 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
 #include "test.h"
 
 int	worldMap[MAP_WIDTH][MAP_HEIGHT] = {\
@@ -153,10 +152,10 @@ int	render_frame(t_data *data)
 	int x;
 
 	y = 0;
-	while (y < WINDOW_HEIGHT)
+	while (y < data->screen_y)
 	{
 		x = 0;
-		while (x < WINDOW_WIDTH)
+		while (x < data->screen_x)
 		{
 			my_mlx_pixel_put(data, x, y, 0x00000000);
 			x++;
@@ -164,9 +163,9 @@ int	render_frame(t_data *data)
 		y++;
 	}
 
-	for(int x = 0; x < WINDOW_WIDTH; x++)
+	for(int x = 0; x < data->screen_x; x++)
 	{
-		double cameraX = 2 * x / (double)WINDOW_WIDTH - 1;
+		double cameraX = 2 * x / (double)data->screen_x - 1;
 		double rayDirX = data->dir_x + data->plane_x * cameraX;
 		double rayDirY = data->dir_y + data->plane_y * cameraX;
 
@@ -216,11 +215,11 @@ int	render_frame(t_data *data)
 		else
 			perpWallDist = (mapY - data->pos_y + (1 - stepY) / 2) / rayDirY;
 
-		int lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
-		int drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
+		int lineHeight = (int)(data->screen_y / perpWallDist);
+		int drawStart = -lineHeight / 2 + data->screen_y / 2;
 		if(drawStart < 0) drawStart = 0;
-		int drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
-		if(drawEnd >= WINDOW_HEIGHT) drawEnd = WINDOW_HEIGHT - 1;
+		int drawEnd = lineHeight / 2 + data->screen_y / 2;
+		if(drawEnd >= data->screen_y) drawEnd = data->screen_y - 1;
 
 		int color;
 		if (side == 0 && stepX > 0)
@@ -244,8 +243,9 @@ int main(void)
 	t_data data;
 
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Raycaster");
-	data.img = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_get_screen_size(data.mlx, &data.screen_x, &data.screen_y);
+	data.win = mlx_new_window(data.mlx, data.screen_x, data.screen_y, "Raycaster");
+	data.img = mlx_new_image(data.mlx, data.screen_x, data.screen_y);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 
 	data.pos_x = 22;
