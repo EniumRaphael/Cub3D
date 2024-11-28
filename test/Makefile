@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/27 19:51:13 by rparodi          ###   ########.fr        #
+#    Updated: 2024/11/28 09:20:29 by bgoulard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,14 @@ CFLAGS += -g3 -MMD
 # CFLAGS += -fsanitize=thread
 
 # INCLUDES += -I /opt/X11/include
-INCLUDES = -I /usr/include -I ./includes -I ./includes/include -I ./minilibx-linux
+INCLUDES = -I /usr/include -I ../includes -I ../includes/include -I ../minilibx-linux
+INCLUDES += -I ../
  
 # Paths
-MLX_DIR = ./minilibx-linux
+MLX_DIR = ../minilibx-linux
 
 # Library flags
-LDFLAGS = -L./build -lmlx -lm
+LDFLAGS = -L../build -lmlx -lm -lft
 
 # MiniLibX flags for macOS with XQuartz
 MLXFLAGS = -L$(MLX_DIR) -lX11 -lXext
@@ -83,8 +84,9 @@ fclean: clean
 re: header fclean all
 
 # Compile external libraries
+#
 build/libmlx.a:
-	@make --no-print-directory -C $(MLX_DIR)
+#	@make --no-print-directory -C $(MLX_DIR)
 
 # Dependences for all
 $(NAME): $(OBJ) build/libmlx.a
