@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:53:42 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/28 13:55:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:06:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ int	init_mlx_env(t_info *info)
 	mlx_hook(info->win_ptr, KeyPress, KeyPressMask, c3_keyhook, info);
 	mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask, c3_redcross, info);
 	mlx_loop_hook(info->mlx_ptr, (int (*)())shelves_launch, &info);
-	mlx_loop_hook(info->mlx_ptr, c3_frame_update, info);
 	return (NO_ERROR);
 }

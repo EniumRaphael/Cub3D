@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 13:54:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:36:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@
 # define FILE_EXTENSION_LEN 4
 # define BG_CLG 0
 # define BG_FLR 1
-
-#define FOV 65
 #define TILE_SIZE 64
+
+// defines that should be mooved to a config option / file
+#define FOV 70
+#define ROT_SPEED 0.1
+#define MOVE_SPEED 0.5
+
 // -- graphic utils
 
 typedef struct s_color
@@ -96,7 +100,9 @@ typedef struct s_map
 typedef struct s_player
 {
 	t_dpoint	pos;
-	double		view;
+	t_ipoint	pos_i;
+	t_dpoint	dir;
+	t_dpoint	plane;
 }			t_player;
 
 // -- cli utils
@@ -129,6 +135,15 @@ typedef enum e_error
 	ERROR_IMPLEM,
 }			t_error;
 
+typedef struct s_pixel_buffer
+{
+	char		*img_addr;
+	t_img		*screen_buff;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}				t_pixel_buffer;
+
 // -- main struct
 
 typedef struct s_info
@@ -136,11 +151,15 @@ typedef struct s_info
 	t_error		last_error;
 	int			errno_state;
 
-	t_xvar		*mlx_ptr;
-	t_win_list	*win_ptr;
+	t_xvar			*mlx_ptr;
+	t_win_list		*win_ptr;
+	t_ipoint		screen_size;
+	t_pixel_buffer	camera;
+
 	t_map		map;
 	t_player	player;
 	t_cli		cli_ctx;
+
 }				t_info;
 
 #endif /* CUB3D_STRUCT_H */

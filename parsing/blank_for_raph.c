@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 06:44:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/13 06:55:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:59:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 static t_tile char_to_tile(char c)
 {
 	if (c == '1' || c == ' ')
-		return (WALL);
-	return (EMPTY);
+		return ((t_tile)WALL);
+	return ((t_tile)EMPTY);
 }
 
 /// @brief Createsa a blank map for rapahael to test the raycasting

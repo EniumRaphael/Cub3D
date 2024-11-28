@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:24:35 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/26 13:39:56 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/28 15:15:15 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,7 @@
 #include "cub3d_struct.h"
 #include "mlx_functions.h"
 #include "raycast.h"
-
-/**
- * @brief convert a angle in degrees to radian
- *
- * @param degrees the angle in degrees
- * @return the angle in radian
- */
-double	cub_convert_deg_to_rad(double degrees)
-{
-	return (degrees * (M_PI / 180.0));
-}
+#include <stdlib.h>
 
 /**
 	* @brief Launches a ray for raycasting to determine the distance to the first wall.
@@ -78,7 +68,7 @@ void	draw_line(t_info *info, int x, int start, int end, unsigned int color)
 	}
 }
 
-void	shelves_launch(t_info *info)
+/*
 {
 	info->player.pos = (t_dpoint){ 4.5, 4.5 }; // Starting in the middle of the map
 	info->player.view = 0;	int		x;
@@ -99,4 +89,10 @@ void	shelves_launch(t_info *info)
 
 		draw_line(info, x, start, end, 0xFFFFFF);
 	}
+}*/
+
+int shelves_launch(t_info *info)
+{
+	render_frame(info);
+	return (EXIT_SUCCESS);
 }

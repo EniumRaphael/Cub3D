@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 08:31:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/27 11:53:06 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:41:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ info->last_error = ERROR_MALLOC, false);
 			if (texture.img == NULL)
 				return (info->errno_state = errno,
 info->last_error = ERROR_MLX, false); 
-			return (info->map.texture[i] = texture, true);
+			return (info->map.texture_[i] = texture, true);
 		}
 		i++;
 	}
@@ -266,6 +266,7 @@ t_tile	*c3_get_cell(t_tile *map, t_ipoint dimensions, t_ipoint pos)
 
 bool	flood_fill(t_tile *tiles, t_ipoint pos, t_ipoint maxs)
 {
+	printf("dbg marker %s\n", __func__);
 	t_tile			*current;
 	size_t			i;
 	const t_ipoint	to_check[] = {
@@ -294,6 +295,7 @@ bool	flood_fill(t_tile *tiles, t_ipoint pos, t_ipoint maxs)
 
 void	*traverse_map(void *data)
 {
+	printf("dbg marker %s\n", __func__);
 	t_info		*info;
 	t_ipoint	pos_start;
 
@@ -304,6 +306,7 @@ void	*traverse_map(void *data)
 	return (info);
 }
 
+void dump_map(t_tile *map, t_ipoint size);
 void	parse_map(t_info *info)
 {
 	t_optional			opt;
@@ -320,4 +323,5 @@ void	parse_map(t_info *info)
 	info->map.path = info->cli_ctx.file;
 	if (ft_optional_chain(&opt, function_list) == false)
 		return (c3_perror(info), (void)0);
+	dump_map(info->map.map, info->map.size);
 }
