@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 23:55:29 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/26 13:35:13 by rparodi          ###   ########.fr       */
+/*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/11/28 13:54:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # define FILE_EXTENSION ".cub"
 # define FILE_EXTENSION_LEN 4
+# define BG_CLG 0
+# define BG_FLR 1
 
 #define FOV 65
 #define TILE_SIZE 64
@@ -38,6 +40,14 @@ typedef struct s_color
 	};
 }			t_color;
 
+typedef struct s_texture
+{
+	t_img	*img;
+	int		width;
+	int		height;
+	char	*path;
+}			t_texture;
+
 typedef struct s_point
 {
 	int	x;
@@ -54,9 +64,19 @@ typedef struct s_dpoint
 
 typedef enum e_tile
 {
-	EMPTY,
-	WALL
-}			t_tile;
+	EMPTY = 0,
+	WALL = 1,
+}			t_tile_type;
+
+typedef union u_tile
+{
+	int		raw_tile;
+	struct {
+		unsigned int	tile_visited: 1; // parsing
+		unsigned int    other: 27; // disponible
+		unsigned int	tile_type: 4; // 16 tile types possible
+	};
+} t_tile;
 
 typedef struct s_map
 {
@@ -67,6 +87,7 @@ typedef struct s_map
 	t_tile		*map;
 	char		**fraw;
 	t_img		*texture[4];
+	t_texture	texture_[4];
 	t_color		bg_colors[2];
 }				t_map;
 
@@ -86,6 +107,7 @@ typedef struct s_cli
 	char		*file;
 	bool		save;
 	bool		help;
+	bool		no_graphics;
 }			t_cli;
 
 // -- error utils
@@ -103,6 +125,7 @@ typedef enum e_error
 	ERROR_PARSE,
 	ERROR_CLI,
 	ERROR_MLX,
+	ERROR_TEXTURE_FORMAT,
 	ERROR_IMPLEM,
 }			t_error;
 
@@ -111,6 +134,8 @@ typedef enum e_error
 typedef struct s_info
 {
 	t_error		last_error;
+	int			errno_state;
+
 	t_xvar		*mlx_ptr;
 	t_win_list	*win_ptr;
 	t_map		map;

@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/26 13:37:20 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/28 13:54:39 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	cleanup_info(t_info *info);
 
 int		c3_options(t_info *info, int argc, char *argv[]);
 void	c3_perror(t_info *info);
-void	print_error(const char *msg);
+void	print_error(const char *msg, int errno_state);
 
 void	parse_map(t_info *info);
 void	parse_args(char *arg, t_info *inf);

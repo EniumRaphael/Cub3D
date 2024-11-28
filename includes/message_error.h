@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:43:20 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/09 00:42:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:57:28 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 
 # define RED "\x1b[31m"
 # define BOLD_RED "\033[1;31m"
+# define YELLOW "\x1b[33m"
+# define BOLD_YELLOW "\033[1;33m"
 # define RESET "\x1b[K\x1b[0m"
 #endif

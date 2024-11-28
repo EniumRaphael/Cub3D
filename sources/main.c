@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/18 14:31:35 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/11/28 13:55:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 void blank(t_info *info);
 
@@ -25,8 +26,10 @@ void blank(t_info *info);
 // possible moment :)
 void	dump_info(t_info *info)
 {
-	const char *bool_str[2] = { "True", "False"};
+	const char	*bool_str[2] = {"True", "False"};
+	size_t		i;
 
+	i = 0;
 	printf("t_info:\n");
 	printf("\tcli_ctx:\n");
 	printf("\t\tfile: %s\n", info->cli_ctx.file);
@@ -37,9 +40,13 @@ void	dump_info(t_info *info)
 	printf("\t\tpath:%s\n", info->map.path);
 	printf("\t\tfd:%d\n", info->map.fd);
 	printf("\t\tsize:\t(x:%d, y:%d)\n", info->map.size.x, info->map.size.y);
-	printf("\t\tplayer_pos:\t(x:%lf, y:%lf)\n", info->map.player_pos.x, info->map.player_pos.y);
-	for (size_t i = 0; info->map.fraw[i]; i++)
+	printf("\t\tplayer_pos:\t(x:%lf, y:%lf)\n", info->map.player_pos.x, \
+	info->map.player_pos.y);
+	while (info->map.fraw[i])
+	{
 		printf("\t\tmap.fraw[%zu]: %s\n", i, info->map.fraw[i]);
+		i++;
+	}
 }
 
 void	check_err(t_info *info)
@@ -52,32 +59,35 @@ void	check_err(t_info *info)
 		return (info->last_error = ERROR_EXTENSION_FILE, (void)0);
 	info->map.fd = open(info->cli_ctx.file, O_RDONLY);
 	if (info->map.fd == -1)
-		return (info->last_error = ERROR_OPEN_FILE, (void)0);
+		return (info->errno_state = errno,
+		info->last_error = ERROR_OPEN_FILE, (void)0);
 }
 
 void	run_cub3d(t_info *info)
 {
 	blank(info);
+	if (init_mlx_env(info) != NO_ERROR)
+		return ;
+	parse_map(info);
 	if (info->cli_ctx.debug)
 		dump_info(info);
 	if (info->last_error != NO_ERROR)
 		return ;
+	if (info->cli_ctx.no_graphics)
+		printf("no graphics mode\n");
 	// todo: here
 	//	- validity check
-	init_mlx_env(info);
+	printf("launching mlx\n");
 	mlx_loop(info->mlx_ptr);
 //	- game loop : already loops over the mlx_ptr 
 //	 -> get events if key pressed move player + run math to re-draw screen
-//	- mlx cleanup : already called in parent function deprecated to call here
-//	 -> previous 'segfault' were due to someone calling cleaup instead of 
-//	 mlx_loop_end
 }
 
 /// @brief main function of the cub3d executable
 /// @param file_arg the file path to the .cub file
 /// @param info the info structure
 /// @return false (0) if no error, true (1) if an error
-int main_cub3d(char *file_arg, t_info *info)
+int	main_cub3d(char *file_arg, t_info *info)
 {
 	if (info->cli_ctx.help)
 		return (cleanup_info(info), EXIT_SUCCESS);
