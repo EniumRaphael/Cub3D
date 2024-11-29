@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:53:42 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/28 14:06:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:06:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 #include "mlx_functions.h"
 #include "mlx_structs.h"
 
+#include "ft_math.h"
+
 #include <stdlib.h>
 #include <X11/keysym.h>
 
 int	c3_frame_update(void *inf_ptr);
 
+int	key_hook(int keycode, t_info *data);
 /* move player w keys and call to redraw screen */
 int	c3_keyhook(int keycode, t_info *info)
 {
@@ -35,13 +38,14 @@ int	c3_redcross(t_info *info)
 
 t_win_list	*c3_init_mlx_window(t_info *info)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	mlx_get_screen_size(info->mlx_ptr, &x, &y);
-	return (mlx_new_window(info->mlx_ptr, x, y, "C3D"));
+	mlx_get_screen_size(info->mlx_ptr, &info->screen_size.x, &info->screen_size.y);
+	info->screen_size.x *= WIN_COEF;
+	info->screen_size.y *= WIN_COEF;
+	ft_clamp(info->screen_size.x, 0, 1920);
+	ft_clamp(info->screen_size.y, 0, 1080);
+	return (\
+	mlx_new_window(info->mlx_ptr, info->screen_size.x, info->screen_size.y, \
+				WIN_TITLE));
 }
 
 int	init_mlx_env(t_info *info)
@@ -52,8 +56,8 @@ int	init_mlx_env(t_info *info)
 	info->win_ptr = c3_init_mlx_window(info);
 	if (!info->win_ptr)
 		return (ERROR_MLX);
-	mlx_hook(info->win_ptr, KeyPress, KeyPressMask, c3_keyhook, info);
+	mlx_hook(info->win_ptr, KeyPress, KeyPressMask, key_hook, info);
 	mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask, c3_redcross, info);
-	mlx_loop_hook(info->mlx_ptr, (int (*)())shelves_launch, &info);
+	mlx_loop_hook(info->mlx_ptr, (int (*)())shelves_launch, info);
 	return (NO_ERROR);
 }

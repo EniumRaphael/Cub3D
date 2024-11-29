@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/28 15:38:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:08:31 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 #include <stdlib.h>
 #include <sys/types.h>
 
-void blank(t_info *info);
-
 void dump_map(t_tile *map, t_ipoint size)
 {
 	int i;
@@ -31,6 +29,7 @@ void dump_map(t_tile *map, t_ipoint size)
 	while (i < size.y)
 	{
 		j = 0;
+		printf("\t\t\t");
 		while (j < size.x)
 		{
 			printf("%d", map[i * size.x + j].tile_type);
@@ -50,20 +49,24 @@ void	dump_info(t_info *info)
 
 	i = 0;
 	printf("t_info:\n");
+	printf("\tplayer:\n");
+	printf("\t\tpos_i:\t(x: %d, y:%d)\n", info->player.pos_i.x, info->player.pos_i.y);
+	printf("\t\tpos:\t(x:%lf, y:%lf)\n", info->player.pos.x, info->player.pos.y);
+	printf("\t\tdir:\t(x:%lf, y:%lf)\n", info->player.dir.x, info->player.dir.y);
+	printf("\t\tplane:\t(x:%lf, y:%lf)\n", info->player.plane.x, info->player.plane.y);
+
 	printf("\tcli_ctx:\n");
-	printf("\t\tfile: %s\n", info->cli_ctx.file);
-	printf("\t\tdebug: %s\n", bool_str[info->cli_ctx.debug]);
-	printf("\t\tsave: %s\n", bool_str[info->cli_ctx.save]);
-	printf("\t\thelp: %s\n", bool_str[info->cli_ctx.help]);
+	printf("\t\tfile:\t%s\n", info->cli_ctx.file);
+	printf("\t\tdebug:\t%s\n", bool_str[info->cli_ctx.debug]);
+	printf("\t\tsave:\t%s\n", bool_str[info->cli_ctx.save]);
+	printf("\t\thelp:\t%s\n", bool_str[info->cli_ctx.help]);
 	printf("\tmap:\n");
 	printf("\t\tpath:%s\n", info->map.path);
-	printf("\t\tfd:%d\n", info->map.fd);
+	printf("\t\tfd:\t%d\n", info->map.fd);
 	printf("\t\tsize:\t(x:%d, y:%d)\n", info->map.size.x, info->map.size.y);
-	printf("\t\tplayer_pos:\t(x:%lf, y:%lf)\n", info->map.player_pos.x, \
-	info->map.player_pos.y);
 	while (info->map.fraw[i])
 	{
-		printf("\t\tmap.fraw[%zu]: %s\n", i, info->map.fraw[i]);
+		printf("\t\tmap.fraw[%*zu]: %s\n", 3, i, info->map.fraw[i]);
 		i++;
 	}
 	printf("\t\ttexture[0]: %p\n", info->map.texture[0]);
@@ -72,9 +75,9 @@ void	dump_info(t_info *info)
 	printf("\t\ttexture[3]: %p\n", info->map.texture[3]);
 	printf("\t\tmap: %p\n", info->map.map);
 	dump_map(info->map.map, info->map.size);
-
 	printf("\tlast_error: %d\n", info->last_error);
 	printf("\terno_state: %d\n", info->errno_state);
+	printf("\n");
 }
 
 void	check_err(t_info *info)
@@ -100,14 +103,12 @@ void	run_cub3d(t_info *info)
 		dump_info(info);
 	if (info->last_error != NO_ERROR)
 		return ;
-	if (info->cli_ctx.no_graphics)
-		printf("no graphics mode\n");
-	// todo: here
-	//	- validity check
-	printf("launching mlx\n");
+	info->camera.screen_buff = \
+		mlx_new_image(info->mlx_ptr, info->screen_size.x, info->screen_size.y);
+	info->camera.img_addr = \
+		mlx_get_data_addr(info->camera.screen_buff, &info->camera.bpp, \
+		&info->camera.line_len, &info->camera.endian);
 	mlx_loop(info->mlx_ptr);
-//	- game loop : already loops over the mlx_ptr 
-//	 -> get events if key pressed move player + run math to re-draw screen
 }
 
 /// @brief main function of the cub3d executable

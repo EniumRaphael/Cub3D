@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/28 15:15:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:41:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdbool.h>
 
 // utils
+void	dump_info(t_info *info);
 int	render_frame(t_info *data);
 void	my_mlx_pixel_put(t_info *data, int x, int y, int color);
 double	deg2rad(int deg);

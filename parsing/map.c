@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 08:31:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 15:41:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:46:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 // sys std
 #include <fcntl.h>
+#include <math.h>
 #include <stdio.h>
 #include <sys/types.h>
 
@@ -192,14 +193,14 @@ void	str_to_tile(const char *str, t_tile *tile, size_t size)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '1' || i[str] == ' ')
-			tile[i].raw_tile = WALL;
+		if (str[i] == '1' || str[i] == ' ')
+			tile[i].tile_type = WALL;
 		else
-			tile[i].raw_tile = EMPTY;
+			tile[i].tile_type = EMPTY;
 		i++;
 	}
 	while (i < size)
-		tile[i++].raw_tile = WALL;
+		tile[i++].tile_type = WALL;
 }
 
 t_vector	*load_vector(t_map *map)
@@ -250,9 +251,10 @@ void	*load_tiles(void *data)
 			if (pos.x != 0 || pos.y != 0 || i == 0)
 				return (ft_vec_destroy(&str_map), \
 				info->last_error = ERROR_PARSE, NULL);
-			pos.x = i + .5;
-			pos.y = ft_strchrs(ft_vec_at(str_map, i), "SNWE") - ft_vec_at(str_map, i) + .5;
+			pos.y = i + .5;
+			pos.x = ft_strchrs(ft_vec_at(str_map, i), "SNWE") - ft_vec_at(str_map, i) + .5;
 			info->player.pos = pos;
+			info->player.pos_i = (t_ipoint){.x = (int)pos.x, .y = (int)pos.y};
 		}
 		i++;
 	}
@@ -261,12 +263,15 @@ void	*load_tiles(void *data)
 
 t_tile	*c3_get_cell(t_tile *map, t_ipoint dimensions, t_ipoint pos)
 {
+	if (pos.x < 0 || pos.y < 0 || pos.x >= dimensions.x || pos.y >= dimensions.y)
+		return (printf("runtime error: %s:%d (pos:%d,%d on dims:%d,%d)\n", 
+		__func__, __LINE__, pos.x, pos.y, dimensions.x, dimensions.y),
+		NULL);
 	return (map + (pos.y * dimensions.x + pos.x));
 }
 
 bool	flood_fill(t_tile *tiles, t_ipoint pos, t_ipoint maxs)
 {
-	printf("dbg marker %s\n", __func__);
 	t_tile			*current;
 	size_t			i;
 	const t_ipoint	to_check[] = {
@@ -286,6 +291,8 @@ bool	flood_fill(t_tile *tiles, t_ipoint pos, t_ipoint maxs)
 	if (current->tile_visited == true || current->tile_type == WALL)
 		return (true);
 	current->tile_visited = true;
+//	printf("dbg (marker %s:%d) pos (%03d : %03d), max (%03d, %03d)\n", 
+//	__func__, __LINE__, pos.x, pos.y, maxs.x, maxs.y);
 	i = 0;
 	while (i != (sizeof(to_check) / sizeof(to_check[0])))
 		if (flood_fill(tiles, to_check[i++], maxs) == false)
@@ -295,7 +302,7 @@ bool	flood_fill(t_tile *tiles, t_ipoint pos, t_ipoint maxs)
 
 void	*traverse_map(void *data)
 {
-	printf("dbg marker %s\n", __func__);
+//	printf("dbg marker %s\n", __func__);
 	t_info		*info;
 	t_ipoint	pos_start;
 
@@ -306,7 +313,6 @@ void	*traverse_map(void *data)
 	return (info);
 }
 
-void dump_map(t_tile *map, t_ipoint size);
 void	parse_map(t_info *info)
 {
 	t_optional			opt;
@@ -323,5 +329,7 @@ void	parse_map(t_info *info)
 	info->map.path = info->cli_ctx.file;
 	if (ft_optional_chain(&opt, function_list) == false)
 		return (c3_perror(info), (void)0);
-	dump_map(info->map.map, info->map.size);
+	info->player.plane = (t_dpoint){.x = 0, .y = 
+		2 * atan(deg2rad(FOV / 2))};
+	info->player.dir = (t_dpoint){.x = -1, .y = 0};
 }

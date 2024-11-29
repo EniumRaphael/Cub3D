@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 01:11:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 13:58:48 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:09:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void	cleanup_mlx(t_info *info)
 		if (info->map.texture[i])
 			mlx_destroy_image(info->mlx_ptr, info->map.texture[i]);
 	}
-	
+	if (info->camera.screen_buff)
+		mlx_destroy_image(info->mlx_ptr, info->camera.screen_buff);
 	mlx_destroy_display(info->mlx_ptr);
 	ft_free((void **)&info->mlx_ptr);
 }

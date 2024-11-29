@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 15:36:36 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:07:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # define FILE_EXTENSION_LEN 4
 # define BG_CLG 0
 # define BG_FLR 1
-#define TILE_SIZE 64
+# define TILE_SIZE 64
+# define WIN_COEF .5
+# define WIN_TITLE "Cub3D"
 
 // defines that should be mooved to a config option / file
 #define FOV 70
@@ -72,21 +74,16 @@ typedef enum e_tile
 	WALL = 1,
 }			t_tile_type;
 
-typedef union u_tile
-{
-	int		raw_tile;
-	struct {
-		unsigned int	tile_visited: 1; // parsing
-		unsigned int    other: 27; // disponible
-		unsigned int	tile_type: 4; // 16 tile types possible
-	};
+typedef struct s_tile {
+		bool			tile_visited; // parsing
+		unsigned int    other; // disponible
+		unsigned int	tile_type; // 16 tile types possible
 } t_tile;
 
 typedef struct s_map
 {
 	int			fd;
 	char		*path;
-	t_dpoint	player_pos;
 	t_ipoint	size;
 	t_tile		*map;
 	char		**fraw;

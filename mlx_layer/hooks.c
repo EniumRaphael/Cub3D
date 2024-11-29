@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:12:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 14:57:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:00:33 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 #include "mlx_functions.h"
 
 #include <X11/keysym.h>
+#include <stdio.h>
 
 int	key_hook(int keycode, t_info *data)
 {
+	printf("Event detected: %d\n", keycode);
 	if (keycode == XK_Escape)
 		mlx_loop_end(data->mlx_ptr);
 	if (keycode == XK_w)

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:09:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 14:54:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 15:33:19 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ double	deg2rad(int deg)
 void	rotate_plane(t_dpoint *plane, double angle)
 {
 	double	old_plane_x;
-	double	old_plane_y;
+//	double	old_plane_y;
 
 	old_plane_x = (*plane).x;
-	old_plane_y = (*plane).y;
+//	old_plane_y = (*plane).y;
 	plane->x = plane->x * cos(angle) - plane->y * sin(angle);
 	plane->y = old_plane_x * sin(angle) + plane->y * cos(angle);
 }

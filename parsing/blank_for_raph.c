@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 06:44:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 13:59:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:07:01 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@
 
 static t_tile char_to_tile(char c)
 {
+	t_tile tile;
+
+	ft_bzero(&tile, sizeof(t_tile));
 	if (c == '1' || c == ' ')
-		return ((t_tile)WALL);
-	return ((t_tile)EMPTY);
+		return ((tile.tile_type = WALL, tile));
+	return ((tile.tile_type = EMPTY, tile));
 }
 
 /// @brief Createsa a blank map for rapahael to test the raycasting
@@ -39,8 +42,8 @@ void blank(t_info *info)
 
 	info->map.size.x = 5;
 	info->map.size.y = 6;
-	info->map.player_pos.x = 2.5;
-	info->map.player_pos.y = 2.5;
+//	info->map.player_pos.x = 2.5;
+//	info->map.player_pos.y = 2.5;
 	info->map.fraw = malloc(sizeof(char *) * 6);
 	info->map.fraw[0] = ft_strdup("11111");
 	info->map.fraw[1] = ft_strdup("10001");
