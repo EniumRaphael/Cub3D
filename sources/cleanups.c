@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 01:11:01 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/29 17:09:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:24:54 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,24 @@ static void	cleanup_map(t_map *map)
 
 static void	cleanup_mlx(t_info *info)
 {
+	size_t	i;
+
+	i = 0;
 	if (!info->mlx_ptr)
 		return ;
 	if (info->win_ptr)
 		mlx_destroy_window(info->mlx_ptr, info->win_ptr);
-	for (int i = 0; i < 4; i++)
+	while (i < sizeof(info->map.texture_) / sizeof(info->map.texture_[0]))
 	{
 		if (info->map.texture_[i].img)
 			mlx_destroy_image(info->mlx_ptr, info->map.texture_[i].img);
-		if (info->map.texture_[i].path)
-			ft_free((void **)&info->map.texture_[i].path);
-		if (info->map.texture[i])
-			mlx_destroy_image(info->mlx_ptr, info->map.texture[i]);
+		if (info->map.texture_[i++].path)
+			ft_free((void **)&info->map.texture_[i - 1].path);
 	}
+	i = 0;
+	while (i < sizeof(info->map.texture) / sizeof(info->map.texture[0]))
+		if (info->map.texture[i++])
+			mlx_destroy_image(info->mlx_ptr, info->map.texture[i - 1]);
 	if (info->camera.screen_buff)
 		mlx_destroy_image(info->mlx_ptr, info->camera.screen_buff);
 	mlx_destroy_display(info->mlx_ptr);

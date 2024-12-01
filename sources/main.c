@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/29 17:08:31 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:27:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 #include <stdlib.h>
 #include <sys/types.h>
 
-void dump_map(t_tile *map, t_ipoint size)
+void	dump_map(t_tile *map, t_ipoint size)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < size.y)
@@ -40,12 +40,12 @@ void dump_map(t_tile *map, t_ipoint size)
 	}
 }
 
-// not normed but we'll take care of this as a niceties at the last 
+// not normed but we'll take care of this as a niceties at the last
 // possible moment :)
 void	dump_info(t_info *info)
 {
-	const char	*bool_str[2] = {"False", "True"};
-	size_t		i;
+	const char *bool_str[2] = {"False", "True"};
+	size_t i;
 
 	i = 0;
 	printf("t_info:\n");
@@ -54,7 +54,6 @@ void	dump_info(t_info *info)
 	printf("\t\tpos:\t(x:%lf, y:%lf)\n", info->player.pos.x, info->player.pos.y);
 	printf("\t\tdir:\t(x:%lf, y:%lf)\n", info->player.dir.x, info->player.dir.y);
 	printf("\t\tplane:\t(x:%lf, y:%lf)\n", info->player.plane.x, info->player.plane.y);
-
 	printf("\tcli_ctx:\n");
 	printf("\t\tfile:\t%s\n", info->cli_ctx.file);
 	printf("\t\tdebug:\t%s\n", bool_str[info->cli_ctx.debug]);
@@ -90,8 +89,8 @@ void	check_err(t_info *info)
 		return (info->last_error = ERROR_EXTENSION_FILE, (void)0);
 	info->map.fd = open(info->cli_ctx.file, O_RDONLY);
 	if (info->map.fd == -1)
-		return (info->errno_state = errno,
-		info->last_error = ERROR_OPEN_FILE, (void)0);
+		return (info->errno_state = errno, info->last_error = ERROR_OPEN_FILE,
+			(void)0);
 }
 
 void	run_cub3d(t_info *info)
@@ -103,11 +102,10 @@ void	run_cub3d(t_info *info)
 		dump_info(info);
 	if (info->last_error != NO_ERROR)
 		return ;
-	info->camera.screen_buff = \
-		mlx_new_image(info->mlx_ptr, info->screen_size.x, info->screen_size.y);
-	info->camera.img_addr = \
-		mlx_get_data_addr(info->camera.screen_buff, &info->camera.bpp, \
-		&info->camera.line_len, &info->camera.endian);
+	info->camera.screen_buff = mlx_new_image(info->mlx_ptr, info->screen_size.x,
+			info->screen_size.y);
+	info->camera.img_addr = mlx_get_data_addr(info->camera.screen_buff,
+			&info->camera.bpp, &info->camera.line_len, &info->camera.endian);
 	mlx_loop(info->mlx_ptr);
 }
 

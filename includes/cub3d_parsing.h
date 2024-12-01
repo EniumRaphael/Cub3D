@@ -6,13 +6,14 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:41:07 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/18 11:32:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:53:02 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_PARSING_H
 # define CUB3D_PARSING_H
 
+# include "cub3d_struct.h"
 # include <stdbool.h>
 
 # define C3D_PRS_PLS "SO"
@@ -24,30 +25,14 @@
 # define C3D_PRS_WLL '1'
 # define C3D_PRS_EMP '0'
 
-enum e_tile_m
-{
-	EMPTY,
-	DOOR_OPEN,
-	DOOR_ANIM,
-	DOOR_CLOSE,
-	WALL_TRAIL,
-	WALL,
-	PLAYER_N,
-	PLAYER_S,
-	PLAYER_E,
-	PLAYER_W
-};
+t_tile	*c3_get_cell(t_tile *map, t_ipoint dimensions, t_ipoint pos);
+bool	is_identifier(const char *str, const char **id_str);
 
-typedef struct s_map_truth
-{
-	enum e_tile_m	tile;
-	char			chr[2];
-}					t_map_truth;
-
-typedef struct s_tile
-{
-	enum e_tile_m	tile;
-	bool			visited;
-}					t_tile;
+void	*load_file(void *data);
+void	*load_bgs(void *data);
+void	*load_map(void *data);
+void	*load_textures(void *data);
+void	*load_tiles(void *data);
+void	*traverse_map(void *data);
 
 #endif /* CUB3D_PARSING_H */
