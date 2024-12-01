@@ -6,15 +6,15 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:15:04 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 14:57:25 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:57:24 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_struct.h"
 
-int get_cl(int side, t_ipoint step)
+int	get_cl(int side, t_ipoint step)
 {
-	int color;
+	int	color;
 
 	if (side == 0 && step.x > 0)
 		color = 0x00FF0000;
@@ -26,4 +26,3 @@ int get_cl(int side, t_ipoint step)
 		color = 0x00FFFF00;
 	return (color);
 }
-
