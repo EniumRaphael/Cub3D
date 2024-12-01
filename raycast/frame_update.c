@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 06:02:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/29 17:01:14 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:09:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,6 @@ void search_hit(t_dpoint *sideDist, t_dpoint deltaDist, t_ipoint *pos_i, t_ipoin
 			pos_i->y += step.y;
 			*side = 1;
 		}
-		
-		if (data->map.size.x < 0 || data->map.size.y < 0 ||
-		data->map.size.x > 100 || data->map.size.y > 100)
-			exit (EXIT_FAILURE);
-
 		if ((*c3_get_cell(data->map.map, data->map.size, *pos_i))
 			.tile_type != EMPTY)
 			return ;

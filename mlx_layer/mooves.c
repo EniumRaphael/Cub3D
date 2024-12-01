@@ -6,12 +6,18 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:10:44 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/28 14:50:48 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:15:27 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "cub3d_struct.h"
+
+void	update_pos_i(t_player *player)
+{
+	player->pos_i.x = (int)player->pos.x;
+	player->pos_i.y = (int)player->pos.y;
+}
 
 void	move_straight(t_info *data)
 {
@@ -26,6 +32,7 @@ void	move_straight(t_info *data)
 	(t_ipoint){(int)data->player.pos.x, (int)(data->player.pos.y + data->player.dir.y * MOVE_SPEED)});
 	if (tile_y->tile_type == EMPTY)
 		data->player.pos.y += data->player.dir.y * MOVE_SPEED;
+	update_pos_i(&data->player);
 }
 
 void	move_backward(t_info *data)
@@ -41,6 +48,7 @@ void	move_backward(t_info *data)
 	(t_ipoint){(int)data->player.pos.x, (int)(data->player.pos.y - data->player.dir.y * MOVE_SPEED)});
 	if (tile_y->tile_type == EMPTY)
 		data->player.pos.y -= data->player.dir.y * MOVE_SPEED;
+	update_pos_i(&data->player);
 }
 
 void	move_left(t_info *data)
@@ -59,6 +67,7 @@ void	move_left(t_info *data)
 	(t_ipoint){(int)data->player.pos.x, (int)(data->player.pos.y + pplayer.y * MOVE_SPEED)});
 	if (tile_y->tile_type == EMPTY)
 		data->player.pos.y += pplayer.y * MOVE_SPEED;
+	update_pos_i(&data->player);
 }
 
 void	move_right(t_info *data)
@@ -77,4 +86,5 @@ void	move_right(t_info *data)
 	(t_ipoint){(int)data->player.pos.x, (int)(data->player.pos.y - pplayer.y * MOVE_SPEED)});
 	if (tile_y->tile_type == EMPTY)
 		data->player.pos.y -= pplayer.y * MOVE_SPEED;
+	update_pos_i(&data->player);
 }
