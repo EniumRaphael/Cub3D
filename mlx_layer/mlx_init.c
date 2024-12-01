@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:53:42 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/01 17:33:00 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/01 18:02:27 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 int	c3_frame_update(void *inf_ptr);
 
 int	key_hook(int keycode, t_info *data);
+
 /* move player w keys and call to redraw screen */
 int	c3_keyhook(int keycode, t_info *info)
 {
@@ -38,7 +39,8 @@ int	c3_redcross(t_info *info)
 
 t_win_list	*c3_init_mlx_window(t_info *info)
 {
-	mlx_get_screen_size(info->mlx_ptr, &info->screen_size.x, &info->screen_size.y);
+	mlx_get_screen_size(info->mlx_ptr, \
+		&info->screen_size.x, &info->screen_size.y);
 	info->screen_size.x *= WIN_COEF;
 	info->screen_size.y *= WIN_COEF;
 	ft_clamp(info->screen_size.x, 0, 1920);
@@ -57,7 +59,8 @@ int	init_mlx_env(t_info *info)
 	if (!info->win_ptr)
 		return (ERROR_MLX);
 	mlx_hook(info->win_ptr, KeyPress, KeyPressMask, key_hook, info);
-	mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask, c3_redcross, info);
+	mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask, \
+		c3_redcross, info);
 	mlx_loop_hook(info->mlx_ptr, (int (*)())shelves_launch, info);
 	return (NO_ERROR);
 }

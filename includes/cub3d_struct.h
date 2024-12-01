@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 17:33:48 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/01 18:01:48 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define WIN_TITLE "Cub3D"
 
 // defines that should be mooved to a config option / file
-#define FOV 70
-#define ROT_SPEED 0.1
-#define MOVE_SPEED 0.5
+# define FOV 70
+# define ROT_SPEED 0.1
+# define MOVE_SPEED 0.5
 
 // -- graphic utils
 
@@ -74,11 +74,17 @@ typedef enum e_tile
 	WALL = 1,
 }			t_tile_type;
 
-typedef struct s_tile {
-		bool			tile_visited; // parsing
-		unsigned int    other; // disponible
-		unsigned int	tile_type; // 16 tile types possible
-} t_tile;
+/*
+ * @param tile_visited parsing
+ * @param other disponible
+ * @param tile_type 16 tiles types possible
+ */
+typedef struct s_tile
+{
+	bool			tile_visited;
+	unsigned int	other;
+	unsigned int	tile_type;
+}					t_tile;
 
 typedef struct s_map
 {
@@ -145,18 +151,18 @@ typedef struct s_pixel_buffer
 
 typedef struct s_info
 {
-	t_error		last_error;
-	int			errno_state;
+	t_error			last_error;
+	int				errno_state;
 
 	t_xvar			*mlx_ptr;
 	t_win_list		*win_ptr;
 	t_ipoint		screen_size;
 	t_pixel_buffer	camera;
 
-	t_map		map;
-	t_player	player;
-	t_cli		cli_ctx;
+	t_map			map;
+	t_player		player;
+	t_cli			cli_ctx;
 
-}				t_info;
+}					t_info;
 
 #endif /* CUB3D_STRUCT_H */

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:12:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 17:27:45 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/01 18:46:32 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,22 @@
 
 #include "mlx_functions.h"
 
+#include "ft_char.h"
 #include <X11/keysym.h>
 #include <stdio.h>
 
 int	key_hook(int keycode, t_info *data)
 {
-	printf("Event detected: %d\n", keycode);
+	if (ft_isalpha(keycode))
+		printf("Event detected: %d\t(%c)\n", keycode, keycode);
+	else if (keycode == 65361)
+		printf("Event detected: %d\t(Left Arrow)\n", keycode);
+	else if (keycode == 65363)
+		printf("Event detected: %d\t(Right Arrow)\n", keycode);
+	else if (keycode == 65307)
+		printf("Event detected: %d\t(Echap)\n", keycode);
+	else
+		printf("Event detected: %d\n", keycode);
 	if (keycode == XK_Escape)
 		mlx_loop_end(data->mlx_ptr);
 	if (keycode == XK_w)
@@ -37,4 +47,3 @@ int	key_hook(int keycode, t_info *data)
 		look_right(data);
 	return (0);
 }
-

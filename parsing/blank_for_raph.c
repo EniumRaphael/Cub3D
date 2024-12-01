@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 06:44:42 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/29 16:07:01 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 18:51:20 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "ft_string.h"
 #include <stdlib.h>
 
-static t_tile char_to_tile(char c)
+static t_tile	char_to_tile(char c)
 {
-	t_tile tile;
+	t_tile	tile;
 
 	ft_bzero(&tile, sizeof(t_tile));
 	if (c == '1' || c == ' ')
@@ -36,14 +36,13 @@ static t_tile char_to_tile(char c)
 /// 10111
 /// 111  
 /// @note The blank does not fill in the textures.
-void blank(t_info *info)
+void	blank(t_info *info)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	info->map.size.x = 5;
 	info->map.size.y = 6;
-//	info->map.player_pos.x = 2.5;
-//	info->map.player_pos.y = 2.5;
 	info->map.fraw = malloc(sizeof(char *) * 6);
 	info->map.fraw[0] = ft_strdup("11111");
 	info->map.fraw[1] = ft_strdup("10001");
@@ -51,11 +50,11 @@ void blank(t_info *info)
 	info->map.fraw[3] = ft_strdup("10001");
 	info->map.fraw[4] = ft_strdup("10111");
 	info->map.fraw[5] = ft_strdup("11111");
-	info->map.map = ft_calloc(sizeof(t_tile), (info->map.size.y * info->map.size.x));
-
+	info->map.map = ft_calloc(sizeof(t_tile), \
+		(info->map.size.y * info->map.size.x));
 	while (i < info->map.size.y * info->map.size.x)
 	{
-		info->map.map[i] = char_to_tile (
+		info->map.map[i] = char_to_tile (\
 		info->map.fraw[i / info->map.size.x][i % info->map.size.x]);
 		i++;
 	}
