@@ -1,5 +1,5 @@
 .direnv/
-Cub3D
+Cub3D*
 build/
 .clangd
 .clang*

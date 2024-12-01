@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:12:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/29 17:00:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:27:45 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	key_hook(int keycode, t_info *data)
 	if (keycode == XK_s)
 		move_backward(data);
 	if (keycode == XK_a)
-		move_right(data);
-	if (keycode == XK_d)
 		move_left(data);
+	if (keycode == XK_d)
+		move_right(data);
 	if (keycode == XK_Left)
 		look_left(data);
 	if (keycode == XK_Right)
