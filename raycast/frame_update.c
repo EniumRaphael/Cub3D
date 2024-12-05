@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 06:02:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 18:57:25 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/05 16:30:56 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,23 @@ void	column_handler(t_ipoint pos_i, t_dpoint ray_dir, t_info *data, int x)
 	draw_(side, perp_wall_dist, step, x, data);
 }
 
+void draw_floor(t_info *data)
+{
+	t_ipoint	temp;
+
+	temp.y = data->screen_size.y / 2;
+	while (temp.y < data->screen_size.y)
+	{
+		temp.x = 0;
+		while (temp.x < data->screen_size.x)
+		{
+			my_mlx_pixel_put(data, temp.x, temp.y, 0xFFFFFF);
+			temp.x++;
+		}
+		temp.y++;
+	}
+}
+
 int	render_frame(t_info *data)
 {
 	double	camera_x;
@@ -101,6 +118,7 @@ int	render_frame(t_info *data)
 	coef = 2 * tan(deg2rad(FOV) / 2) / (double)data->screen_size.x;
 	ft_bzero(data->camera.img_addr, data->screen_size.x * data->screen_size.y \
 	* (data->camera.bpp / 8));
+	draw_floor(data);
 	while (x < data->screen_size.x)
 	{
 		camera_x = x * coef - 1;

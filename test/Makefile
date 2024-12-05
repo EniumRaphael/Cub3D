@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/11/28 09:20:29 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/12/02 17:42:23 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ MLXFLAGS = -L$(MLX_DIR) -lX11 -lXext
 # Add MLXFLAGS to the linker flags
 LDFLAGS += $(MLXFLAGS)
 
-SRC = test.c
+SRC = test2.c
 
 # Objects
 OBJDIRNAME = ./build

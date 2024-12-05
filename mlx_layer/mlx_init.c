@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:53:42 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/01 18:02:27 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/02 00:20:25 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ t_win_list	*c3_init_mlx_window(t_info *info)
 {
 	mlx_get_screen_size(info->mlx_ptr, \
 		&info->screen_size.x, &info->screen_size.y);
-	info->screen_size.x *= WIN_COEF;
-	info->screen_size.y *= WIN_COEF;
+	/*info->screen_size.x *= WIN_COEF;*/
+	/*info->screen_size.y *= WIN_COEF;*/
 	ft_clamp(info->screen_size.x, 0, 1920);
 	ft_clamp(info->screen_size.y, 0, 1080);
 	return (\

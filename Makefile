@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/12/01 18:57:47 by rparodi          ###   ########.fr        #
+#    Updated: 2024/12/02 00:17:35 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,6 @@ re: header fclean all
 build/libft.a:
 	@make --no-print-directory -C $(LIBFT_DIR)
 build/libmlx.a:
-	@make --no-print-directory -C $(MLX_DIR)
 
 # Dependences for all
 $(NAME): $(OBJ) build/libft.a build/libmlx.a
