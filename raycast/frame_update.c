@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 06:02:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/05 16:30:56 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/05 16:44:04 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,6 @@ void	column_handler(t_ipoint pos_i, t_dpoint ray_dir, t_info *data, int x)
 		perp_wall_dist = (pos_i.y - data->player.pos.y + \
 			(double)(1 - step.y) / 2) / ray_dir.y;
 	draw_(side, perp_wall_dist, step, x, data);
-}
-
-void draw_floor(t_info *data)
-{
-	t_ipoint	temp;
-
-	temp.y = data->screen_size.y / 2;
-	while (temp.y < data->screen_size.y)
-	{
-		temp.x = 0;
-		while (temp.x < data->screen_size.x)
-		{
-			my_mlx_pixel_put(data, temp.x, temp.y, 0xFFFFFF);
-			temp.x++;
-		}
-		temp.y++;
-	}
 }
 
 int	render_frame(t_info *data)

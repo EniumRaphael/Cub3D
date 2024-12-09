@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 18:55:11 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/01 18:57:21 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/05 16:43:53 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,23 @@
 
 #include <math.h>
 #include <unistd.h>
+
+void	draw_floor(t_info *data)
+{
+	t_ipoint	temp;
+
+	temp.y = data->screen_size.y / 2;
+	while (temp.y < data->screen_size.y)
+	{
+		temp.x = 0;
+		while (temp.x < data->screen_size.x)
+		{
+			my_mlx_pixel_put(data, temp.x, temp.y, 0xFFFFFF);
+			temp.x++;
+		}
+		temp.y++;
+	}
+}
 
 void	set_step(t_ipoint *step, t_dpoint raydir)
 {

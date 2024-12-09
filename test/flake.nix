@@ -18,7 +18,7 @@
       in {
         devShell = pkgs.mkShell {
           packages = [
-           pkgs.xorg.libX11
+			pkgs.xorg.libX11
             pkgs.xorg.libXext
             pkgs.clang
             pkgs.clang-tools

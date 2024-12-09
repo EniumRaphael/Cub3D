@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/12/02 17:42:23 by rparodi          ###   ########.fr        #
+#    Updated: 2024/12/02 17:47:59 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,13 @@ CFLAGS += -g3 -MMD
 # CFLAGS += -fsanitize=thread
 
 # INCLUDES += -I /opt/X11/include
-INCLUDES = -I /usr/include -I ../includes -I ../includes/include -I ../minilibx-linux
-INCLUDES += -I ../
+INCLUDES = -I /usr/include -I ./includes -I ./includes/include -I ./minilibx-linux
  
 # Paths
-MLX_DIR = ../minilibx-linux
+MLX_DIR = ./minilibx-linux
 
 # Library flags
-LDFLAGS = -L../build -lmlx -lm -lft
+LDFLAGS = -L./build -lmlx -lm
 
 # MiniLibX flags for macOS with XQuartz
 MLXFLAGS = -L$(MLX_DIR) -lX11 -lXext
@@ -83,13 +82,9 @@ fclean: clean
 # Restart (make re)
 re: header fclean all
 
-# Compile external libraries
-#
-build/libmlx.a:
-#	@make --no-print-directory -C $(MLX_DIR)
 
 # Dependences for all
-$(NAME): $(OBJ) build/libmlx.a
+$(NAME): $(OBJ)
 	@mkdir -p $(OBJDIRNAME)
 	@printf '$(GREY) Creating $(END)$(GREEN)$(OBJDIRNAME)$(END)\n'
 	@$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $(NAME)
