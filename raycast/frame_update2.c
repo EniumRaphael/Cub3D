@@ -6,34 +6,36 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 18:55:11 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/05 16:43:53 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/16 09:43:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "cub3d_struct.h"
-
-#include "mlx_functions.h"
 #include "ft_string.h"
-#include "ft_math.h"
 
-#include <math.h>
 #include <unistd.h>
 
-void	draw_floor(t_info *data)
+void	draw_bg(t_info *data)
 {
 	t_ipoint	temp;
+	int			switch_point;
+	int			color;
 
-	temp.y = data->screen_size.y / 2;
+	ft_bzero(&temp, sizeof(t_ipoint));
+	switch_point = data->screen_size.y / 2;
+	color = data->map.bg_colors[BG_SKY].color;
 	while (temp.y < data->screen_size.y)
 	{
 		temp.x = 0;
 		while (temp.x < data->screen_size.x)
 		{
-			my_mlx_pixel_put(data, temp.x, temp.y, 0xFFFFFF);
+			my_mlx_pixel_put(data, temp.x, temp.y, color);
 			temp.x++;
 		}
 		temp.y++;
+		if (temp.y >= switch_point)
+			color = data->map.bg_colors[BG_FLR].color;
 	}
 }
 

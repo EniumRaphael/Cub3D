@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:43:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 17:45:58 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 09:39:50 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ t_tile	*c3_get_cell(t_tile *map, t_ipoint dimensions, t_ipoint pos)
 {
 	if (pos.x < 0 || pos.y < 0 || pos.x >= dimensions.x
 		|| pos.y >= dimensions.y)
-		return (printf("runtime error: %s:%d (pos:%d,%d on dims:%d,%d)\n",
-				__func__, __LINE__, pos.x, pos.y, dimensions.x, dimensions.y),
-			NULL);
+		return (NULL);
 	return (map + (pos.y * dimensions.x + pos.x));
 }
 

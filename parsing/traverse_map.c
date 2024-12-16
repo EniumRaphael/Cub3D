@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:49:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 17:54:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 09:45:25 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	*traverse_map(void *data)
 	info = (t_info *)data;
 	pos_start = (t_ipoint){.x = info->player.pos.x, .y = info->player.pos.y};
 	if (flood_fill(info->map.map, pos_start, info->map.size) == false)
-		return (info->last_error = ERROR_PARSE, NULL);
+		return (info->last_error = ERROR_MAP_OPEN, NULL);
 	return (info);
 }

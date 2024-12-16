@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 08:31:06 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 17:51:13 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 08:49:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	parse_map(t_info *info)
 
 	opt = (t_optional){.val = info, .pres = OPT_SOME};
 	info->map.path = info->cli_ctx.file;
-	if (ft_optional_chain(&opt, function_list) == false)
-		return (c3_perror(info), (void)0);
 	info->player.plane = (t_dpoint){.x = 0, .y = 2 * atan(deg2rad(FOV / 2))};
 	info->player.dir = (t_dpoint){.x = -1, .y = 0};
+	if (ft_optional_chain(&opt, function_list) == false)
+		return (c3_perror(info), (void)0);
 }

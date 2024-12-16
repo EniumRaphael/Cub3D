@@ -6,13 +6,13 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:24:35 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/01 18:39:11 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:08:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "cub3d_struct.h"
-#include "mlx_functions.h"
+
 #include "raycast.h"
 #include <stdlib.h>
 
@@ -55,6 +55,8 @@ double	rc_launch(t_info *info, double angle)
 
 int	shelves_launch(t_info *info)
 {
-	render_frame(info);
+	displacement_hook(info);
+	if (info->redraw)
+		(render_frame(info), info->redraw = false);
 	return (EXIT_SUCCESS);
 }

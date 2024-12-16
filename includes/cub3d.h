@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/05 16:45:30 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:48:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@
 
 # include <stdbool.h>
 
+// raycasting
+void	draw_bg(t_info *data);
+void	set_step(t_ipoint *step, t_dpoint raydir);
+void	set_side_dist(t_dpoint *side_dist, t_dpoint *tb, t_ipoint pos_i);
+t_texture	*get_texture(int side, t_ipoint step, t_info *data);
+void	draw_(int *ti, double *td, t_ipoint step, t_info *data);
+
 // utils
 void	draw_floor(t_info *data);
-void	dump_info(t_info *info);
 int		render_frame(t_info *data);
 void	my_mlx_pixel_put(t_info *data, int x, int y, int color);
 double	deg2rad(int deg);
@@ -38,6 +44,9 @@ void	move_backward(t_info *data);
 void	move_left(t_info *data);
 void	move_right(t_info *data);
 
+int	keyrelease_feature(int keycode, t_info *data);
+int	keypress_feature(int keycode, t_info *data);
+int	displacement_hook(t_info *data);
 int		get_cl(int side, t_ipoint step);
 t_tile	*c3_get_cell(t_tile *map, t_ipoint dimensions, t_ipoint pos);
 

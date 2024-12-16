@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 06:02:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/05 16:44:04 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:51:46 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,31 @@
 
 #include "mlx_functions.h"
 #include "ft_string.h"
-#include "ft_math.h"
 
 #include <math.h>
 #include <unistd.h>
 
-void	set_step(t_ipoint *step, t_dpoint raydir);
-void	set_side_dist(t_dpoint *side_dist, t_dpoint *tb, t_ipoint pos_i);
-
-/// line 33: normalize draw_start and draw_end
-void	draw_(int side, double perpWallDist, t_ipoint step, int x, t_info *data)
+void	search_hit(t_dpoint delta_dist, t_ipoint *pos_i, t_ipoint step, \
+	void *_data[3])
 {
-	const int	line_height = (int)(data->screen_size.y / perpWallDist) \
-		* cos(deg2rad(FOV / 2));
-	int			draw_start;
-	int			draw_end;
-	int			color;
-
-	draw_start = -line_height / 2 + data->screen_size.y / 2;
-	draw_end = line_height / 2 + data->screen_size.y / 2;
-	draw_start = ft_clamp(draw_start, 0, data->screen_size.y - 1);
-	draw_end = ft_clamp(draw_end, 0, data->screen_size.y - 1);
-	color = get_cl(side, step);
-	while (draw_start < draw_end)
-		my_mlx_pixel_put(data, x, draw_start++, color);
-}
-
-void	search_hit(t_dpoint *sideDist, t_dpoint deltaDist, t_ipoint *pos_i, \
-		t_ipoint step, void *_data[2])
-{
-	int		*side;
-	t_info	*data;
+	int			*side;
+	t_info		*data;
+	t_dpoint	*side_dist;
 
 	side = (int *)_data[1];
 	data = (t_info *)_data[0];
+	side_dist = (t_dpoint *)_data[2];
 	while (true)
 	{
-		if (sideDist->x < sideDist->y)
+		if (side_dist->x < side_dist->y)
 		{
-			sideDist->x += deltaDist.x;
+			side_dist->x += delta_dist.x;
 			pos_i->x += step.x;
 			*side = 0;
 		}
 		else
 		{
-			sideDist->y += deltaDist.y;
+			side_dist->y += delta_dist.y;
 			pos_i->y += step.y;
 			*side = 1;
 		}
@@ -69,11 +49,14 @@ void	search_hit(t_dpoint *sideDist, t_dpoint deltaDist, t_ipoint *pos_i, \
 	}
 }
 
+// t_dpoint prep_distoff ->
+//  x - perpwall_dist
+//  y - wall_off
 void	column_handler(t_ipoint pos_i, t_dpoint ray_dir, t_info *data, int x)
 {
 	t_dpoint	side_dist;
 	t_dpoint	delta_dist;
-	double		perp_wall_dist;
+	t_dpoint	perp_distoff;
 	t_ipoint	step;
 	int			side;
 
@@ -81,17 +64,23 @@ void	column_handler(t_ipoint pos_i, t_dpoint ray_dir, t_info *data, int x)
 	set_step(&step, ray_dir);
 	set_side_dist(&side_dist, (t_dpoint[]){ray_dir, data->player.pos, \
 		delta_dist}, pos_i);
-	search_hit(&side_dist, delta_dist, &pos_i, step, (void *[]){data, &side});
+	search_hit(delta_dist, &pos_i, step, (void *[]){data, &side, &side_dist});
 	if (side == 0)
-		perp_wall_dist = (pos_i.x - data->player.pos.x + \
+		perp_distoff.x = (pos_i.x - data->player.pos.x + \
 			(double)(1 - step.x) / 2) / ray_dir.x;
 	else
-		perp_wall_dist = (pos_i.y - data->player.pos.y + \
+		perp_distoff.x = (pos_i.y - data->player.pos.y + \
 			(double)(1 - step.y) / 2) / ray_dir.y;
-	draw_(side, perp_wall_dist, step, x, data);
+	perp_distoff.y = data->player.pos.x + perp_distoff.x * ray_dir.x;
+	if (side == 0)
+		perp_distoff.y = data->player.pos.y + perp_distoff.x * ray_dir.y;
+	perp_distoff.y -= floor(perp_distoff.y);
+	draw_((int []){side, x}, (double []){perp_distoff.x, perp_distoff.y}, \
+	step, data);
 }
 
 int	render_frame(t_info *data)
+
 {
 	double	camera_x;
 	double	coef;
@@ -101,7 +90,7 @@ int	render_frame(t_info *data)
 	coef = 2 * tan(deg2rad(FOV) / 2) / (double)data->screen_size.x;
 	ft_bzero(data->camera.img_addr, data->screen_size.x * data->screen_size.y \
 	* (data->camera.bpp / 8));
-	draw_floor(data);
+	draw_bg(data);
 	while (x < data->screen_size.x)
 	{
 		camera_x = x * coef - 1;
@@ -112,28 +101,6 @@ int	render_frame(t_info *data)
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
-		data->camera.screen_buff, 0, 0);
+	data->camera.screen_buff, 0, 0);
 	return (0);
-}
-
-// Return 42 is irrelevant check mlx_loop to see that mlx doesn't care for the 
-//		return of the function... 
-//		(Why 'int (*)(void*)' when you dont use the int)
-//
-// This function is called each time the mlx loops over the mlx pointer in 
-//		mlx_loop. here we do calc on time since last frame and player position 
-//		to know if we need to re-draw the screen. if yes call raph function for
-//		calc.
-// The need to redraw can also be expressed in the diferent key_pressed 
-//		functions, I would recomend to make a bool field for that in the info
-//		struct.
-// As a pure artefact of using mlx this function will likely be mooved to 
-//		mlx_layer in the final repo.
-int	c3_frame_update(void *inf_ptr)
-{
-	t_info	*info;
-
-	info = inf_ptr;
-	mlx_clear_window(info->mlx_ptr, info->win_ptr);
-	return (EXIT_SUCCESS);
 }

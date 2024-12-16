@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:25:27 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/08/21 21:42:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 06:02:56 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,7 +322,7 @@ size_t		ft_strclen(char *str, char c);
 /// @param str String to search from
 /// @param c Char to search
 /// @return the number of occurance of char c in string str
-size_t		ft_strcnb(char *str, char c);
+size_t		ft_strcnb(const char *str, char c);
 
 /// @brief Calculate the length of the starting segment of str that contain 
 /// char from the accept string

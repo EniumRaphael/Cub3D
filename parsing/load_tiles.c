@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 17:53:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 09:33:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "ft_string.h"
 #include "ft_vector.h"
 #include "ft_math.h"
+
+#include <stdio.h>
 
 void	*ft_strchrs(const char *str, const char *chrs)
 {
@@ -68,16 +70,28 @@ t_vector	*load_vector(t_map *map)
 int	set_player(t_info *info, int i, t_vector *str_map)
 {
 	t_dpoint	pos;
+	char		*str;
 
 	ft_bzero(&pos, sizeof(t_dpoint));
 	if (info->player.pos.x != 0 || info->player.pos.y != 0 || i == 0)
 		return (ft_vec_destroy(&str_map), info->last_error = ERROR_PARSE, \
 		EXIT_FAILURE);
+	str = ft_strchrs(ft_vec_at(str_map, i), "SNWE");
 	pos.y = i + .5;
-	pos.x = ft_strchrs(ft_vec_at(str_map, i), "SNWE")
-		- ft_vec_at(str_map, i) + .5;
+	pos.x = str - (char *)ft_vec_at(str_map, i) + .5;
+	info->player.dir = (t_dpoint){.x = 0, 0};
 	info->player.pos = pos;
 	info->player.pos_i = (t_ipoint){.x = (int)pos.x, .y = (int)pos.y};
+	if (*str == 'N')
+		info->player.dir.y = -1;
+	else if (*str == 'S')
+		info->player.dir.y = 1;
+	else if (*str == 'W')
+		info->player.dir.x = -1;
+	else if (*str == 'E')
+		info->player.dir.x = 1;
+	info->player.plane = (t_dpoint){.x = info->player.dir.y, \
+	.y = -info->player.dir.x};
 	return (EXIT_SUCCESS);
 }
 

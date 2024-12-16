@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:46:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 17:53:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:25:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 
 #include "mlx_functions.h"
 #include <stdbool.h>
+#include <stdio.h>
+
+static void	sv_errno(t_info *inf, int err_code)
+{
+	inf->errno_state = errno;
+	inf->last_error = err_code;
+}
 
 bool	load_texture(t_info *info, const char *str, const char **id_str)
 {
@@ -28,17 +35,17 @@ bool	load_texture(t_info *info, const char *str, const char **id_str)
 	{
 		if (ft_strstart_with(str, id_str[i]))
 		{
-			texture.path = ft_strtrim(str + ft_strlen(id_str[i]), " ");
+			if (info->map.texture_[i].img != NULL)
+				return (sv_errno(info, ERROR_PARSE_ALREADY_SET), false);
+			texture.path = ft_strtrim(str + ft_strlen(id_str[i]), " \t");
 			if (texture.path == NULL)
-				return (info->errno_state = errno,
-					info->last_error = ERROR_MALLOC, false);
+				return (sv_errno(info, ERROR_MALLOC), false);
 			if (ft_strend_with(texture.path, ".xpm") == false)
-				return (info->last_error = ERROR_TEXTURE_FORMAT, false);
+				return (sv_errno(info, ERROR_TEXTURE_FORMAT), false);
 			texture.img = mlx_xpm_file_to_image(info->mlx_ptr, texture.path,
 					&texture.width, &texture.height);
 			if (texture.img == NULL)
-				return (info->errno_state = errno, info->last_error = ERROR_MLX,
-					false);
+				return (sv_errno(info, ERROR_MLX), false);
 			return (info->map.texture_[i] = texture, true);
 		}
 		i++;

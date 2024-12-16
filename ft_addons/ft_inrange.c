@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcnb.c                                        :+:      :+:    :+:   */
+/*   ft_inrange.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 10:58:46 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/16 06:02:31 by bgoulard         ###   ########.fr       */
+/*   Created: 2024/12/16 06:04:32 by bgoulard          #+#    #+#             */
+/*   Updated: 2024/12/16 09:01:36 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+// dest ft_math/ft_inrange.c
+#include <stdbool.h>
 
-size_t	ft_strcnb(const char *str, char c)
+bool	ft_inrange_ex(int value, int min, int max)
 {
-	size_t	i;
-	size_t	nb;
+	return (value > min && value < max);
+}
 
-	i = 0;
-	nb = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		if (str[i++] == c)
-			nb++;
-	if (c == '\0')
-		nb++;
-	return (nb);
+bool	ft_inrange(int value, int min, int max)
+{
+	return (value >= min && value <= max);
 }

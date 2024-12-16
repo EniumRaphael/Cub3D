@@ -6,44 +6,38 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:12:25 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 18:46:32 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:16:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "cub3d_struct.h"
 
-#include "mlx_functions.h"
-
-#include "ft_char.h"
 #include <X11/keysym.h>
-#include <stdio.h>
+#include <sys/types.h>
 
-int	key_hook(int keycode, t_info *data)
+static void	update_pos_i(t_player *player)
 {
-	if (ft_isalpha(keycode))
-		printf("Event detected: %d\t(%c)\n", keycode, keycode);
-	else if (keycode == 65361)
-		printf("Event detected: %d\t(Left Arrow)\n", keycode);
-	else if (keycode == 65363)
-		printf("Event detected: %d\t(Right Arrow)\n", keycode);
-	else if (keycode == 65307)
-		printf("Event detected: %d\t(Echap)\n", keycode);
-	else
-		printf("Event detected: %d\n", keycode);
-	if (keycode == XK_Escape)
-		mlx_loop_end(data->mlx_ptr);
-	if (keycode == XK_w)
+	player->pos_i.x = (int)player->pos.x;
+	player->pos_i.y = (int)player->pos.y;
+}
+
+int	displacement_hook(t_info *data)
+{
+	data->redraw = true;
+	update_pos_i(&data->player);
+	if (data->kb.forward && !data->kb.backward)
 		move_straight(data);
-	if (keycode == XK_s)
+	if (data->kb.backward && !data->kb.forward)
 		move_backward(data);
-	if (keycode == XK_a)
+	if (data->kb.left && !data->kb.right)
 		move_left(data);
-	if (keycode == XK_d)
+	if (data->kb.right && !data->kb.left)
 		move_right(data);
-	if (keycode == XK_Left)
+	if (data->kb.l_left && !data->kb.l_right)
 		look_left(data);
-	if (keycode == XK_Right)
+	if (data->kb.l_right && !data->kb.l_left)
 		look_right(data);
+	update_pos_i(&data->player);
 	return (0);
 }

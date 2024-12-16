@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 18:01:48 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:15:43 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define FILE_EXTENSION ".cub"
 # define FILE_EXTENSION_LEN 4
-# define BG_CLG 0
+# define BG_SKY 0
 # define BG_FLR 1
 # define TILE_SIZE 64
 # define WIN_COEF .5
@@ -26,8 +26,8 @@
 
 // defines that should be mooved to a config option / file
 # define FOV 70
-# define ROT_SPEED 0.1
-# define MOVE_SPEED 0.5
+# define ROT_SPEED 0.004
+# define MOVE_SPEED 0.008
 
 // -- graphic utils
 
@@ -132,11 +132,24 @@ typedef enum e_error
 	ERROR_MISSING_FILE,
 	ERROR_MALLOC,
 	ERROR_PARSE,
+	ERROR_MAP_OPEN,
+	ERROR_PARSE_BG_COLOR_FORMAT,
+	ERROR_PARSE_ALREADY_SET,
 	ERROR_CLI,
 	ERROR_MLX,
 	ERROR_TEXTURE_FORMAT,
 	ERROR_IMPLEM,
 }			t_error;
+
+typedef struct s_kb
+{
+	bool	forward;
+	bool	backward;
+	bool	left;
+	bool	right;
+	bool	l_left;
+	bool	l_right;
+}			t_keyboard;
 
 typedef struct s_pixel_buffer
 {
@@ -153,11 +166,13 @@ typedef struct s_info
 {
 	t_error			last_error;
 	int				errno_state;
+	t_keyboard		kb;
 
 	t_xvar			*mlx_ptr;
 	t_win_list		*win_ptr;
 	t_ipoint		screen_size;
 	t_pixel_buffer	camera;
+	bool			redraw;
 
 	t_map			map;
 	t_player		player;

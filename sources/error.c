@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/11/27 12:00:34 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:37:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include <unistd.h>
 
-const char *const	g_error_message[] = {
+static const char	*g_error_message[] = {
 	"no error",
 	"unknown error",
 	"could not open file",
@@ -27,6 +27,9 @@ const char *const	g_error_message[] = {
 	"missing file",
 	"malloc error",
 	"parse error",
+	"map open error",
+	"bad format for background color",
+	"variable was set multiple times",
 	"cli error",
 	"mlx error",
 	"texture format error",
