@@ -13,7 +13,7 @@
 #include "cub3d.h"
 #include "cub3d_struct.h"
 #include "ft_string.h"
-#include "mlx_functions.h"
+#include "mlx.h"
 
 #include <fcntl.h>
 #include <stdio.h>

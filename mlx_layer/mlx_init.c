@@ -6,14 +6,14 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:53:42 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/16 15:07:09 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:36:35 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "cub3d_struct.h"
 
-#include "mlx_functions.h"
+#include "mlx.h"
 #include "mlx_structs.h"
 
 #include "ft_math.h"

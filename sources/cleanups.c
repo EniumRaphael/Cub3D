@@ -12,7 +12,7 @@
 
 #include "cub3d_struct.h"
 #include "ft_string.h"
-#include "mlx_functions.h"
+#include "mlx.h"
 
 static void	cleanup_cli(t_cli *cli_ctx)
 {

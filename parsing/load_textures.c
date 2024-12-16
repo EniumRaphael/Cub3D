@@ -15,7 +15,7 @@
 
 #include "ft_string.h"
 
-#include "mlx_functions.h"
+#include "mlx.h"
 #include <stdbool.h>
 #include <stdio.h>
 

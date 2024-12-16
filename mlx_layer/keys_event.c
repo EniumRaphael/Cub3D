@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d_struct.h"
-#include "mlx_functions.h"
+#include "mlx.h"
 
 #include <stdbool.h>
 #include <X11/keysym.h>
