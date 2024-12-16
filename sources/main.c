@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/16 09:38:44 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:20:34 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	check_err(t_info *info)
 {
 	if (info->cli_ctx.file == NULL)
 		return (info->last_error = ERROR_MISSING_FILE, (void)0);
-	else if (ft_strlen(info->cli_ctx.file) < 5)
-		return (info->last_error = ERROR_NAME_FILE, (void)0);
+	else if (ft_strlen(info->cli_ctx.file) < ft_strlen(FILE_EXTENSION))
+		return (info->last_error = ERROR_EXTENSION_FILE, (void)0);
 	else if (ft_strend_with(info->cli_ctx.file, FILE_EXTENSION) == false)
 		return (info->last_error = ERROR_EXTENSION_FILE, (void)0);
 	info->map.fd = open(info->cli_ctx.file, O_RDONLY);
@@ -38,12 +38,12 @@ void	check_err(t_info *info)
 void	run_cub3d(t_info *info)
 {
 	if (init_mlx_env(info) != NO_ERROR)
-		return ;
+		return (c3_perror(info));
 	parse_map(info);
 	if (info->cli_ctx.debug)
 		ft_putstr_fd("no debug mod on production run", STDERR_FILENO);
 	if (info->last_error != NO_ERROR)
-		return ;
+		return (c3_perror(info));
 	if (info->cli_ctx.no_graphics == true)
 		return ;
 	info->camera.screen_buff = mlx_new_image(info->mlx_ptr, info->screen_size.x,

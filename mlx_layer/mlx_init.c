@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:53:42 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/16 14:40:55 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:07:09 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 
 #include "ft_math.h"
 
+#include <errno.h>
 #include <stdbool.h>
+
 #include <stdlib.h>
 #include <X11/keysym.h>
 
@@ -51,10 +53,12 @@ int	init_mlx_env(t_info *info)
 {
 	info->mlx_ptr = mlx_init();
 	if (!info->mlx_ptr)
-		return (ERROR_MLX);
+		return (info->last_error = ERROR_MLX, info->errno_state = errno, \
+			ERROR_MLX);
 	info->win_ptr = c3_init_mlx_window(info);
 	if (!info->win_ptr)
-		return (ERROR_MLX);
+		return (info->last_error = ERROR_MLX, info->errno_state = errno, \
+			ERROR_MLX);
 	mlx_hook(info->win_ptr, KeyPress, KeyPressMask, keypress_feature, info);
 	mlx_hook(info->win_ptr, KeyRelease, KeyReleaseMask, keyrelease_feature, \
 		info);
