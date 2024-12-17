@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:26 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/16 15:35:29 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:18:05 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_texture	*get_texture(int side, t_ipoint step, t_info *data);
 void		draw_(int *ti, double *td, t_ipoint step, t_info *data);
 
 // utils
+void		sv_errno(t_info *inf, int err_code);
 void		draw_floor(t_info *data);
 int			render_frame(t_info *data);
 void		my_mlx_pixel_put(t_info *data, int x, int y, int color);

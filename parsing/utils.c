@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:43:17 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/16 09:39:50 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:17:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 
 #include <X11/X.h>
 #include <stdio.h>
+
+void	sv_errno(t_info *inf, int err_code)
+{
+	inf->errno_state = errno;
+	inf->last_error = err_code;
+}
 
 t_tile	*c3_get_cell(t_tile *map, t_ipoint dimensions, t_ipoint pos)
 {

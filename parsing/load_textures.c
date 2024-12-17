@@ -6,10 +6,11 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:46:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/17 16:58:30 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:22:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
 #include "cub3d_struct.h"
 #include "cub3d_parsing.h"
 
@@ -18,12 +19,6 @@
 #include "mlx.h"
 #include <stdbool.h>
 #include <stdio.h>
-
-static void	sv_errno(t_info *inf, int err_code)
-{
-	inf->errno_state = errno;
-	inf->last_error = err_code;
-}
 
 bool	load_texture(t_info *info, const char *str, const char **id_str)
 {
@@ -35,7 +30,7 @@ bool	load_texture(t_info *info, const char *str, const char **id_str)
 	{
 		if (ft_strstart_with(str, id_str[i]))
 		{
-			if (info->map.texture_[i].img != NULL)
+			if (info->map.texture[i].img != NULL)
 				return (sv_errno(info, ERROR_PARSE_ALREADY_SET), false);
 			texture.path = ft_strtrim(str + ft_strlen(id_str[i]), " \t");
 			if (texture.path == NULL)
@@ -46,7 +41,7 @@ bool	load_texture(t_info *info, const char *str, const char **id_str)
 					&texture.width, &texture.height);
 			if (texture.img == NULL)
 				return (sv_errno(info, ERROR_MLX), false);
-			return (info->map.texture_[i] = texture, true);
+			return (info->map.texture[i] = texture, true);
 		}
 		i++;
 	}
@@ -70,9 +65,9 @@ void	*load_textures(void *data)
 	}
 	i = 0;
 	errno = 0;
-	while (i < sizeof(info->map.texture_) / sizeof(info->map.texture_[0]))
+	while (i < sizeof(info->map.texture) / sizeof(info->map.texture[0]))
 	{
-		if (info->map.texture_[i].img == NULL || info->map.texture[i] == NULL)
+		if (info->map.texture[i].img == NULL)
 			return (sv_errno(info, ERROR_TEXTURE_MISSING), NULL);
 		i++;
 	}

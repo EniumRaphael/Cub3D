@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/17 16:52:53 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:21:45 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ typedef struct s_map
 	t_ipoint	size;
 	t_tile		*map;
 	char		**fraw;
-	t_img		*texture[4];
-	t_texture	texture_[4];
+	t_texture	texture[4];
 	t_color		bg_colors[2];
 }				t_map;
 
