@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/16 14:15:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:52:53 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef enum e_error
 	ERROR_CLI,
 	ERROR_MLX,
 	ERROR_TEXTURE_FORMAT,
+	ERROR_TEXTURE_MISSING,
 	ERROR_IMPLEM,
 }			t_error;
 

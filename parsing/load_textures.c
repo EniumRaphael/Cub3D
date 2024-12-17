@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:46:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/16 14:25:52 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:58:30 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ void	*load_textures(void *data)
 		if (is_identifier(info->map.fraw[i], id_str) && load_texture(info,
 				info->map.fraw[i], id_str) == false)
 			return (NULL);
+		i++;
+	}
+	i = 0;
+	errno = 0;
+	while (i < sizeof(info->map.texture_) / sizeof(info->map.texture_[0]))
+	{
+		if (info->map.texture_[i].img == NULL || info->map.texture[i] == NULL)
+			return (sv_errno(info, ERROR_TEXTURE_MISSING), NULL);
 		i++;
 	}
 	return (info);

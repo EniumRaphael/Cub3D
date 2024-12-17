@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/16 15:17:33 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:06:42 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,23 @@
 const char	**get_error_message(void)
 {
 	static const char	*error_messages[] = {
-		[NO_ERROR] = "no error",
-		[ERROR_UNKNOWN] = "unknown error",
-		[ERROR_OPEN_FILE] = "could not open file",
-		[ERROR_READ_FILE] = "could not read file",
-		[ERROR_EXTENSION_FILE] = "bad file extension",
-		[ERROR_NAME_FILE] = "invalid file name",
-		[ERROR_MISSING_FILE] = "missing file",
-		[ERROR_MALLOC] = "malloc error",
-		[ERROR_PARSE] = "parse error",
-		[ERROR_MAP_OPEN] = "map open error",
-		[ERROR_PARSE_BG_COLOR_FORMAT] = "bad format for background color",
-		[ERROR_PARSE_ALREADY_SET] = "variable was set multiple times",
-		[ERROR_CLI] = "cli error",
-		[ERROR_MLX] = "mlx error",
-		[ERROR_TEXTURE_FORMAT] = "texture format error",
-		[ERROR_IMPLEM] = "not implemented",
+	[NO_ERROR] = "no error",
+	[ERROR_UNKNOWN] = "unknown error",
+	[ERROR_OPEN_FILE] = "could not open file",
+	[ERROR_READ_FILE] = "could not read file",
+	[ERROR_EXTENSION_FILE] = "bad file extension",
+	[ERROR_NAME_FILE] = "invalid file name",
+	[ERROR_MISSING_FILE] = "missing file",
+	[ERROR_MALLOC] = "malloc error",
+	[ERROR_PARSE] = "parse error",
+	[ERROR_MAP_OPEN] = "map open error",
+	[ERROR_PARSE_BG_COLOR_FORMAT] = "bad format for background color",
+	[ERROR_PARSE_ALREADY_SET] = "variable was set multiple times",
+	[ERROR_CLI] = "cli error",
+	[ERROR_MLX] = "mlx error",
+	[ERROR_TEXTURE_FORMAT] = "texture format error",
+	[ERROR_IMPLEM] = "not implemented",
+	[ERROR_TEXTURE_MISSING] = "texture missing",
 	};
 
 	return (error_messages);
@@ -44,7 +45,7 @@ const char	**get_error_message(void)
 
 void	c3_perror(t_info *info)
 {
-	const char **errs_msg = get_error_message();
+	const char	**errs_msg = get_error_message();
 
 	if (info->last_error == NO_ERROR)
 		return ;
