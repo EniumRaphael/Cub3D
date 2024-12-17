@@ -1,7 +1,7 @@
-SO ./textures/b.xpm
-NO ./textures/wasteland_32.xpm
-WE ./textures/sandy_32.xpm
-EA ./textures/cobblestone_32.xpm
+SO ./textures/chiseled_tuff.xpm
+NO ./textures/chiseled_tuff_bricks.xpm
+WE ./textures/chiseled_stone_bricks.xpm
+EA ./textures/chiseled_tuff_bricks_top.xpm
 
 F 0,255,0
 C 0,255,255
