@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/17 17:06:42 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/19 22:29:32 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,42 @@
 
 const char	**get_error_message(void)
 {
-	static const char	*error_messages[] = {
-	[NO_ERROR] = "no error",
-	[ERROR_UNKNOWN] = "unknown error",
-	[ERROR_OPEN_FILE] = "could not open file",
-	[ERROR_READ_FILE] = "could not read file",
-	[ERROR_EXTENSION_FILE] = "bad file extension",
-	[ERROR_NAME_FILE] = "invalid file name",
-	[ERROR_MISSING_FILE] = "missing file",
-	[ERROR_MALLOC] = "malloc error",
-	[ERROR_PARSE] = "parse error",
-	[ERROR_MAP_OPEN] = "map open error",
-	[ERROR_PARSE_BG_COLOR_FORMAT] = "bad format for background color",
-	[ERROR_PARSE_ALREADY_SET] = "variable was set multiple times",
-	[ERROR_CLI] = "cli error",
-	[ERROR_MLX] = "mlx error",
-	[ERROR_TEXTURE_FORMAT] = "texture format error",
-	[ERROR_IMPLEM] = "not implemented",
-	[ERROR_TEXTURE_MISSING] = "texture missing",
-	};
+	static const char	*err_msg[ERROR_IMPLEM + 1] = { NULL };
 
-	return (error_messages);
+	err_msg[NO_ERROR] = "no error";
+	err_msg[ERROR_UNKNOWN] = "unknown error";
+	err_msg[ERROR_OPEN_FILE] = "could not open file";
+	err_msg[ERROR_READ_FILE] = "could not read file";
+	err_msg[ERROR_EXTENSION_FILE] = "bad file extension";
+	err_msg[ERROR_NAME_FILE] = "invalid file name";
+	err_msg[ERROR_MISSING_FILE] = "missing file";
+	err_msg[ERROR_MALLOC] = "malloc error";
+	err_msg[ERROR_PARSE] = "parse error";
+	err_msg[ERROR_MAP_OPEN] = "map open error";
+	err_msg[ERROR_PARSE_BG_COLOR_FORMAT] = "bad format for background color";
+	err_msg[ERROR_PARSE_ALREADY_SET] = "variable was set multiple times";
+	err_msg[ERROR_CLI] = "cli error";
+	err_msg[ERROR_MLX] = "mlx error";
+	err_msg[ERROR_TEXTURE_FORMAT] = "texture format error";
+	err_msg[ERROR_IMPLEM] = "not implemented";
+	err_msg[ERROR_TEXTURE_MISSING] = "texture missing";
+	err_msg[ERROR_PARSE_NO_BG_COLOR] = "no background color provided";
+	err_msg[ERROR_PARSE_META_IN_MAP] = "meta data in map (should be above)";
+
+	return (err_msg);
 }
 
 void	c3_perror(t_info *info)
 {
 	const char	**errs_msg = get_error_message();
+	const char	*msg;
 
 	if (info->last_error == NO_ERROR)
 		return ;
-	print_error(errs_msg[info->last_error], info->errno_state);
+	msg = errs_msg[info->last_error];
+	if (!msg)
+		msg = errs_msg[ERROR_UNKNOWN];
+	print_error(msg, info->errno_state);
 }
 
 void	print_error(const char *msg, int state)

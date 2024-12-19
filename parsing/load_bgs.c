@@ -6,11 +6,12 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:47:37 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/16 09:36:28 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/19 22:10:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_addons.h"
+#include "cub3d.h"
 #include "cub3d_struct.h"
 #include "cub3d_parsing.h"
 #include "ft_string.h"
@@ -43,7 +44,7 @@ bool	color_from_str(const char *str, t_color *color)
 	return (true);
 }
 
-bool	load_bg(t_info *info, const char *line, const char **id_str)
+bool	load_bg(t_info *info, const char *line, const char **id_str, bool *tpl)
 {
 	t_color	color;
 	size_t	id_idx;
@@ -60,6 +61,7 @@ bool	load_bg(t_info *info, const char *line, const char **id_str)
 		info->map.bg_colors[BG_SKY] = color;
 	else
 		return (info->last_error = ERROR_PARSE_ALREADY_SET, false);
+	tpl[id_idx] = true;
 	return (true);
 }
 
@@ -68,15 +70,19 @@ void	*load_bgs(void *data)
 	const char	*id_str[] = {[BG_FLR] = "F ", [BG_SKY] = "C ", [2] = NULL};
 	t_info		*info;
 	size_t		i;
+	bool		tuple[2];
 
 	i = 0;
 	info = (t_info *)data;
+	ft_bzero(tuple, sizeof(bool) * 2);
 	while (info->map.fraw[i])
 	{
 		if (is_identifier(info->map.fraw[i], id_str) && \
-		load_bg(info, info->map.fraw[i], id_str) == false)
+		load_bg(info, info->map.fraw[i], id_str, tuple) == false)
 			return (NULL);
 		i++;
 	}
+	if (tuple[BG_FLR] == false || tuple[BG_SKY] == false)
+		return (sv_errno(info, ERROR_PARSE_NO_BG_COLOR), NULL);
 	return (info);
 }

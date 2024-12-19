@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/17 17:21:45 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/19 22:29:11 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_cli
 
 // -- error utils
 
+// keep ERROR_IMPLEM as last (used to get enum size)
 typedef enum e_error
 {
 	NO_ERROR = 0,
@@ -133,7 +134,9 @@ typedef enum e_error
 	ERROR_PARSE,
 	ERROR_MAP_OPEN,
 	ERROR_PARSE_BG_COLOR_FORMAT,
+	ERROR_PARSE_NO_BG_COLOR,
 	ERROR_PARSE_ALREADY_SET,
+	ERROR_PARSE_META_IN_MAP,
 	ERROR_CLI,
 	ERROR_MLX,
 	ERROR_TEXTURE_FORMAT,

@@ -1,20 +1,23 @@
-SO ./textures/b.xpm
-NO ./textures/wasteland_32.xpm
-WE ./textures/sandy_32.xpm
-EA 									   ./textures/cobblestone_32.xpm
+SO ./textures/chiseled_tuff.xpm
+NO ./textures/chiseled_tuff_bricks.xpm
+WE ./textures/chiseled_stone_bricks.xpm
+EA ./textures/chiseled_tuff_bricks_top.xpm
+
+
 
 F 0,255,0
-C 0,123,255
+C 0,255,255
 
 
-
-
+ 11111111111111111
+ 10000000000000001
+ 11111111111111111
 11111111111111111111
 10000011000001010101
 10000011000000000001
 10111111111111000101
-1011         1000000
-10111111    11000100
-10000011111110000000
-100000000000000N0000
+1011         1000001
+10111111    11000101
+10000011111110000001
+100000000000000N0001
 11111111111111111111
