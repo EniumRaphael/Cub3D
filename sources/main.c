@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:30:03 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/17 17:17:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:54:59 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	run_cub3d(t_info *info)
 	if (!info->mlx_ptr)
 		return (sv_errno(info, ERROR_MLX), (void)0);
 	parse_map(info);
+	if (info->last_error != NO_ERROR)
+		return ;
 	if (init_mlx_env(info) != NO_ERROR)
 		return (c3_perror(info));
 	if (info->cli_ctx.debug)
 		ft_putstr_fd("no debug mod on production run", STDERR_FILENO);
-	if (info->last_error != NO_ERROR)
-		return ;
 	if (info->cli_ctx.no_graphics == true)
 		return ;
 	info->camera.screen_buff = mlx_new_image(info->mlx_ptr, info->screen_size.x,

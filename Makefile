@@ -43,6 +43,7 @@ LDFLAGS += $(MLXFLAGS)
 
 SRC =\
 	ft_addons/ft_inrange.c \
+	ft_addons/ft_strchrs.c \
 	mlx_layer/mlx_init.c \
 	mlx_layer/looks.c \
 	mlx_layer/mooves.c \

@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/20 14:47:00 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:42:21 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef enum e_error
 	ERROR_PARSE_NO_BG_COLOR,
 	ERROR_PARSE_ALREADY_SET,
 	ERROR_PARSE_META_IN_MAP,
+	ERROR_PARSE_MULTIPLE_PLAYER,
 	ERROR_CLI,
 	ERROR_MLX,
 	ERROR_TEXTURE_FORMAT,

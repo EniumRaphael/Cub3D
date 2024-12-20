@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/20 14:46:40 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:59:04 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,12 @@
 #include "cub3d_parsing.h"
 
 #include "ft_string.h"
+#include "ft_addons.h"
 #include "ft_vector.h"
 #include "ft_math.h"
 
+#include <stdbool.h>
 #include <stdio.h>
-
-void	*ft_strchrs(const char *str, const char *chrs)
-{
-	while (*str)
-	{
-		if (ft_strchr(chrs, *str))
-			return ((void *)str);
-		str++;
-	}
-	return (NULL);
-}
 
 int	str_to_tile(const char *str, t_tile *tile, size_t size)
 {
@@ -74,15 +65,44 @@ t_vector	*load_vector(t_map *map)
 	return (str_map);
 }
 
+#define EPMP ERROR_PARSE_MULTIPLE_PLAYER
+
+static bool	multiple_player_same_line(const char *str)
+{
+	const bool	p_symbol[8] = {\
+	!ft_strchr(str, 'S'), !ft_strchr(str, 'E'), !ft_strchr(str, 'W'), \
+	!ft_strchr(str, 'N'), !(ft_strrchr(str, 'N') - ft_strchr(str, 'N')), \
+	!(ft_strrchr(str, 'E') - ft_strchr(str, 'E')), \
+	!(ft_strrchr(str, 'W') - ft_strchr(str, 'W')), \
+	!(ft_strrchr(str, 'S') - ft_strchr(str, 'S')), };
+	int			i;
+	int			j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+			if (p_symbol[j++] == true && p_symbol[i] == true)
+				return (true);
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+		if (p_symbol[i++ + 4])
+			return (true);
+	return (false);
+}
+
 int	set_player(t_info *info, int i, t_vector *str_map)
 {
 	t_dpoint	pos;
 	char		*str;
 
 	ft_bzero(&pos, sizeof(t_dpoint));
-	if (info->player.pos.x != 0 || info->player.pos.y != 0 || i == 0)
-		return (ft_vec_destroy(&str_map), info->last_error = ERROR_PARSE, \
-		EXIT_FAILURE);
+	if (info->player.pos.x != 0 || info->player.pos.y != 0 || i == 0 || \
+	multiple_player_same_line(ft_vec_at(str_map, i)))
+		return (ft_vec_destroy(&str_map), sv_errno(info, EPMP), EXIT_FAILURE);
 	str = ft_strchrs(ft_vec_at(str_map, i), "SNWE");
 	pos.y = i + .5;
 	pos.x = str - (char *)ft_vec_at(str_map, i) + .5;
