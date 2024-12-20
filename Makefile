@@ -1,4 +1,4 @@
-# **************************************************************************** #
+
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/12/17 10:57:46 by rparodi          ###   ########.fr        #
+#    Updated: 2024/12/20 13:11:09 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,6 +116,14 @@ build/libft.a:
 	@make --no-print-directory -C $(LIBFT_DIR)
 build/libmlx.a:
 	@make --no-print-directory -C $(MLX_DIR)
+
+get_mlx:
+	@git clone https://github.com/42Paris/minilibx-linux
+
+get_mlx-intra:
+	@wget https://cdn.intra.42.fr/document/document/26097/minilibx-linux.tgz --no-check-certificate
+	@tar -xvpf ./minilibx-linux.tgz
+	@rm -rf ./minilibx-linux.tgz
 
 # Dependences for all
 $(NAME): $(OBJ) build/libft.a build/libmlx.a
