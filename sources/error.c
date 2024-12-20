@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/19 22:29:32 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:43:52 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 const char	**get_error_message(void)
 {
-	static const char	*err_msg[ERROR_IMPLEM + 1] = { NULL };
+	static const char	*err_msg[ERROR_IMPLEM + 1] = {NULL};
 
 	err_msg[NO_ERROR] = "no error";
 	err_msg[ERROR_UNKNOWN] = "unknown error";
@@ -41,7 +41,6 @@ const char	**get_error_message(void)
 	err_msg[ERROR_TEXTURE_MISSING] = "texture missing";
 	err_msg[ERROR_PARSE_NO_BG_COLOR] = "no background color provided";
 	err_msg[ERROR_PARSE_META_IN_MAP] = "meta data in map (should be above)";
-
 	return (err_msg);
 }
 

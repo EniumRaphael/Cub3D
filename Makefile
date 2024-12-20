@@ -67,7 +67,6 @@ SRC =\
 	parsing/load_file.c \
 	parsing/utils.c \
 	parsing/map.c \
-	parsing/blank_for_raph.c \
 	parsing/arguments.c \
 	parsing/load_tiles.c
 

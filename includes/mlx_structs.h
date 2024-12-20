@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 05:33:08 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/11/20 15:13:32 by rparodi          ###   ########.fr       */
+/*   Updated: 2024/12/20 15:01:06 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define MLX_TYPE_SHM 2
 # define MLX_TYPE_XIMAGE 1
 
-# define MLX_MAX_EVENT LASTEvent
+# define MLX_MAX_EVENT 36
 
 # define ENV_DISPLAY "DISPLAY"
 # define LOCALHOST "localhost"

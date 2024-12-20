@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:53:54 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/19 22:29:11 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:47:00 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef enum e_tile
 {
 	EMPTY = 0,
 	WALL = 1,
+	NONE = 2
 }			t_tile_type;
 
 /*

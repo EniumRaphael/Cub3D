@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:46:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/20 13:24:17 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:47:18 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-static bool no_leaks(t_info *inf, t_texture *texture, enum e_error error)
+static bool	no_leaks(t_info *inf, t_texture *texture, enum e_error error)
 {
 	if (texture->img != NULL)
 		mlx_destroy_image(inf->mlx_ptr, texture->img);

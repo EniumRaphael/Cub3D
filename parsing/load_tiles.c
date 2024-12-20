@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/19 22:32:16 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:46:40 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	str_to_tile(const char *str, t_tile *tile, size_t size)
 		i++;
 	}
 	while (i < size)
-		tile[i++].tile_type = WALL;
+		tile[i++].tile_type = NONE;
 	return (0);
 }
 
