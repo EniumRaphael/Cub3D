@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/20 16:54:12 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:09:44 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "ft_math.h"
 
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdio.h>
 
 int	str_to_tile(const char *str, t_tile *tile, size_t size)
@@ -67,69 +68,14 @@ t_vector	*load_vector(t_map *map)
 	return (str_map);
 }
 
-#define EPMP ERROR_PARSE_MULTIPLE_PLAYER
+#define EPMIM ERROR_PARSE_META_IN_MAP
+#define ENP ERROR_NO_PLAYER
 
-static bool	multiple_player_same_line(const char *str)
+t_info	*load_tiles_norm(t_info *info, t_vector *str_map)
 {
-	const char	*identifiers = "NEWS";
-	int			i;
-	int			j;
+	size_t	i;
 
 	i = 0;
-	while (i < 4)
-	{
-		if (ft_strchr(str, identifiers[i]) != ft_strrchr(str, identifiers[i]))
-			return (true);
-		j = i + 1;
-		while (j < 4)
-			if (ft_strchr(str, identifiers[j++]) && \
-			ft_strchr(str, identifiers[i]))
-				return (true);
-		i++;
-	}
-	return (false);
-}
-
-int	set_player(t_info *info, int i, t_vector *str_map)
-{
-	t_dpoint	pos;
-	char		*str;
-
-	ft_bzero(&pos, sizeof(t_dpoint));
-	if (info->player.pos.x != 0 || info->player.pos.y != 0 || i == 0 || \
-	multiple_player_same_line(ft_vec_at(str_map, i)))
-		return (ft_vec_destroy(&str_map), sv_errno(info, EPMP), EXIT_FAILURE);
-	str = ft_strchrs(ft_vec_at(str_map, i), "SNWE");
-	pos.y = i + .5;
-	pos.x = str - (char *)ft_vec_at(str_map, i) + .5;
-	info->player.dir = (t_dpoint){.x = 0, 0};
-	info->player.pos = pos;
-	info->player.pos_i = (t_ipoint){.x = (int)pos.x, .y = (int)pos.y};
-	if (*str == 'N')
-		info->player.dir.y = -1;
-	else if (*str == 'S')
-		info->player.dir.y = 1;
-	else if (*str == 'W')
-		info->player.dir.x = -1;
-	else if (*str == 'E')
-		info->player.dir.x = 1;
-	info->player.plane = (t_dpoint){.x = info->player.dir.y, \
-	.y = -info->player.dir.x};
-	return (EXIT_SUCCESS);
-}
-
-#define EPMIM ERROR_PARSE_META_IN_MAP
-
-void	*load_tiles(void *data)
-{
-	t_info		*info;
-	t_vector	*str_map;
-	size_t		i;
-
-	info = (t_info *)data;
-	str_map = load_vector(&info->map);
-	if (!str_map)
-		return (sv_errno(info, ERROR_MALLOC), NULL);
 	info->map.map = ft_calloc(sizeof(t_tile), (info->map.size.y
 				* info->map.size.x));
 	if (!info->map.map)
@@ -145,5 +91,19 @@ void	*load_tiles(void *data)
 			return (NULL);
 		i++;
 	}
+	if (info->player.pos_i.x == 0)
+		return (ft_vec_destroy(&str_map), sv_errno(info, ENP), NULL);
 	return (ft_vec_destroy(&str_map), info);
+}
+
+void	*load_tiles(void *data)
+{
+	t_info		*info;
+	t_vector	*str_map;
+
+	info = (t_info *)data;
+	str_map = load_vector(&info->map);
+	if (!str_map)
+		return (sv_errno(info, ERROR_MALLOC), NULL);
+	return (load_tiles_norm(info, str_map));
 }

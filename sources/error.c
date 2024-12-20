@@ -6,7 +6,7 @@
 /*   By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:09:00 by rparodi           #+#    #+#             */
-/*   Updated: 2024/12/20 15:52:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:02:37 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ const char	**get_error_message(void)
 	err_msg[ERROR_PARSE_NO_BG_COLOR] = "no background color provided";
 	err_msg[ERROR_PARSE_META_IN_MAP] = "meta data in map (should be above)";
 	err_msg[ERROR_PARSE_MULTIPLE_PLAYER] = "multiple player in map";
+	err_msg[ERROR_NO_PLAYER] = "no player in map";
 	return (err_msg);
 }
 

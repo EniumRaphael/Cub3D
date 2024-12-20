@@ -65,6 +65,7 @@ SRC =\
 	parsing/load_textures.c \
 	parsing/load_bgs.c \
 	parsing/traverse_map.c \
+	parsing/set_player.c \
 	parsing/load_file.c \
 	parsing/utils.c \
 	parsing/map.c \

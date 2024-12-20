@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:41:07 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/01 17:53:02 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:07:58 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_PARSING_H
 
 # include "cub3d_struct.h"
+# include "ft_vector_types.h"
 # include <stdbool.h>
 
 # define C3D_PRS_PLS "SO"
@@ -27,6 +28,7 @@
 
 t_tile	*c3_get_cell(t_tile *map, t_ipoint dimensions, t_ipoint pos);
 bool	is_identifier(const char *str, const char **id_str);
+int		set_player(t_info *info, int i, t_vector *str_map);
 
 void	*load_file(void *data);
 void	*load_bgs(void *data);
