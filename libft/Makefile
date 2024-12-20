@@ -6,7 +6,7 @@
 #    By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 09:04:05 by bgoulard          #+#    #+#              #
-#    Updated: 2024/11/09 00:08:07 by bgoulard         ###   ########.fr        #
+#    Updated: 2024/12/20 14:35:10 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ FFLAGS		=\
 			-fsanitize=pointer-subtract										   \
 			-fsanitize-address-use-after-scope -fsanitize=pointer-overflow 
 CFLAGS		=\
-			-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color
+			-Wall -Wextra $(CPPFLAGS) -Werror -fPIC -fdiagnostics-color -g3
 TEST_FLAGS	=\
 		-g2	-DTEST \
 		-fprofile-instr-generate -ftest-coverage -fcoverage-mapping \

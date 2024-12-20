@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/12/20 13:11:09 by rparodi          ###   ########.fr        #
+#    Updated: 2024/12/20 15:00:12 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,7 @@ RM = rm -rf
 
 # Flags
 CFLAGS = -Werror -Wextra -Wall
-CFLAGS += -g3 -MMD 
-# CFLAGS += -fsanitize=address
-# CFLAGS += -fsanitize=thread
+# CFLAGS += -g3 -MMD 
 
 INCLUDES += -I /opt/X11/include
 INCLUDES = -I ./includes -I ./includes/include -I ./minilibx-linux
