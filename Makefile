@@ -6,7 +6,7 @@
 #    By: rparodi <rparodi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 11:05:05 by rparodi           #+#    #+#              #
-#    Updated: 2024/12/20 15:00:12 by rparodi          ###   ########.fr        #
+#    Updated: 2024/12/20 15:06:28 by rparodi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = Cub3D
 NAME_BONUS = Cub3D_bonus
 
 # Commands
-CC = cc
+CC ?= cc
 RM = rm -rf
 
 # Flags
