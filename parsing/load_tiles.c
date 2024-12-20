@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/20 15:59:04 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:35:03 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ static bool	multiple_player_same_line(const char *str)
 	i = 0;
 	while (i < 4)
 	{
-		j = 0;
+		j = i + 1;
 		while (j < 4)
-			if (p_symbol[j++] == true && p_symbol[i] == true)
+			if (!p_symbol[j++] && !p_symbol[i])
 				return (true);
 		i++;
 	}
 	i = 0;
 	while (i < 4)
-		if (p_symbol[i++ + 4])
+		if (p_symbol[i++ + 4] && !p_symbol[i])
 			return (true);
 	return (false);
 }
