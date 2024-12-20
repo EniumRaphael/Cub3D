@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:49:12 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/20 14:49:43 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:54:55 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	flood_fill(t_tile *tiles, t_ipoint pos, t_ipoint maxs)
 	current = c3_get_cell(tiles, maxs, pos);
 	if (current->tile_visited == true || current->tile_type == WALL)
 		return (true);
-	if (current->tile_type == NONE)
+	if (current->tile_type == NONE || current->tile_type == WALL_ERR)
 		return (false);
 	current->tile_visited = true;
 	i = 0;

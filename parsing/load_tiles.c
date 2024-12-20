@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:47:15 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/20 16:35:03 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:54:12 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int	str_to_tile(const char *str, t_tile *tile, size_t size)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '1' || str[i] == ' ')
+		if (str[i] == '1')
 			tile[i].tile_type = WALL;
+		else if (str[i] == ' ')
+			tile[i].tile_type = WALL_ERR;
 		else if (!ft_strchr("0NSWE", str[i]))
 			return (-1);
 		else
@@ -69,28 +71,22 @@ t_vector	*load_vector(t_map *map)
 
 static bool	multiple_player_same_line(const char *str)
 {
-	const bool	p_symbol[8] = {\
-	!ft_strchr(str, 'S'), !ft_strchr(str, 'E'), !ft_strchr(str, 'W'), \
-	!ft_strchr(str, 'N'), !(ft_strrchr(str, 'N') - ft_strchr(str, 'N')), \
-	!(ft_strrchr(str, 'E') - ft_strchr(str, 'E')), \
-	!(ft_strrchr(str, 'W') - ft_strchr(str, 'W')), \
-	!(ft_strrchr(str, 'S') - ft_strchr(str, 'S')), };
+	const char	*identifiers = "NEWS";
 	int			i;
 	int			j;
 
 	i = 0;
 	while (i < 4)
 	{
+		if (ft_strchr(str, identifiers[i]) != ft_strrchr(str, identifiers[i]))
+			return (true);
 		j = i + 1;
 		while (j < 4)
-			if (!p_symbol[j++] && !p_symbol[i])
+			if (ft_strchr(str, identifiers[j++]) && \
+			ft_strchr(str, identifiers[i]))
 				return (true);
 		i++;
 	}
-	i = 0;
-	while (i < 4)
-		if (p_symbol[i++ + 4] && !p_symbol[i])
-			return (true);
 	return (false);
 }
 
