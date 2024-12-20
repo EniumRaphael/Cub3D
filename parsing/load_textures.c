@@ -6,7 +6,7 @@
 /*   By: bgoulard <bgoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:46:52 by bgoulard          #+#    #+#             */
-/*   Updated: 2024/12/17 17:22:21 by bgoulard         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:24:17 by bgoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,23 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+static bool no_leaks(t_info *inf, t_texture *texture, enum e_error error)
+{
+	if (texture->img != NULL)
+		mlx_destroy_image(inf->mlx_ptr, texture->img);
+	if (texture->path != NULL)
+		free(texture->path);
+	sv_errno(inf, error);
+	return (false);
+}
+
 bool	load_texture(t_info *info, const char *str, const char **id_str)
 {
 	size_t		i;
 	t_texture	texture;
 
 	i = 0;
+	ft_bzero(&texture, sizeof(t_texture));
 	while (i < 4)
 	{
 		if (ft_strstart_with(str, id_str[i]))
@@ -36,11 +47,11 @@ bool	load_texture(t_info *info, const char *str, const char **id_str)
 			if (texture.path == NULL)
 				return (sv_errno(info, ERROR_MALLOC), false);
 			if (ft_strend_with(texture.path, ".xpm") == false)
-				return (sv_errno(info, ERROR_TEXTURE_FORMAT), false);
+				return (no_leaks(info, &texture, ERROR_TEXTURE_FORMAT));
 			texture.img = mlx_xpm_file_to_image(info->mlx_ptr, texture.path,
 					&texture.width, &texture.height);
 			if (texture.img == NULL)
-				return (sv_errno(info, ERROR_MLX), false);
+				return (no_leaks(info, &texture, ERROR_MLX));
 			return (info->map.texture[i] = texture, true);
 		}
 		i++;
