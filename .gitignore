@@ -4,6 +4,7 @@ Cub3D*
 build/
 .clangd
 .clang*
+*.lock
 
 to_do*
 .cache/
